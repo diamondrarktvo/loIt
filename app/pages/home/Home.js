@@ -1,10 +1,12 @@
-import { View, Text, Image, TouchableOpacity } from 'react-native';
+import React from 'react';
+import { View, Text, Image, SafeAreaView, TouchableOpacity } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { styles } from './styles';
 import { Icon } from '@rneui/themed';
-// import 'react-circular-progressbar/dist/styles.css';
+import Carousel from 'react-native-snap-carousel';
 
 import HeaderGlobal from '_components/header/HeaderGlobal';
+import {LastPublish} from '_utils';
 import { Contexte } from '_utils';
 import { Colors } from '_theme/Colors';
 import { useState, useContext, useEffect } from 'react';
@@ -12,6 +14,7 @@ import { useGetLocation } from '_utils/hooks/useGetLocation';
 
 export default function Home({ navigation }) {
    //all states
+   const isCarousel = React.useRef(null);
    const { position, errorMsgLocation } = useContext(Contexte);
 
    //all logics
@@ -24,6 +27,20 @@ export default function Home({ navigation }) {
    };
 
    //all efects
+
+   //all components
+   const _renderItem = ({ item }) => {
+      return (
+         <View key={item.id} style={styles.view_container_renderItem} >
+            <Image
+               style={styles.image_poster_style}
+               source={item.poster_loi} //require(film.urlImage) si path absolue et {{ uri : urlImage}} si lien
+            />
+            <Text style={{ marginVertical: 8, fontWeight: 'bold', fontSize: 17 }}>{ item.txt_loi }</Text>
+            <Text style={{fontSize: 12}} >Publié le :{item.date_publish} </Text>
+         </View>
+      );
+   };
 
    return (
       <KeyboardAwareScrollView style={{ backgroundColor: Colors.background }}>
@@ -41,11 +58,69 @@ export default function Home({ navigation }) {
                      style={styles.icon_in_content_landing}
                      source={require('_images/book_loi.jpg')}
                   />
-                  <View style={{ display: 'flex', flexDirection: 'column' }}>
-                     <Text>Adventure</Text>
+                  <View
+                     style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'flex-start',
+                     }}
+                  >
+                     <Text style={{ fontSize: 16 ,fontWeight: 'bold' }}>Adventure</Text>
                      <Text>Continue de lire</Text>
                   </View>
-                  <Icon name={'restart'} color={Colors.white} size={18} />
+                  <Icon name={'autorenew'} color={Colors.white} size={38} />
+               </View>
+            </View>
+
+            <View style={styles.categories}>
+               <View style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginVertical: 25}} >
+                  <Text style={{fontSize: 22, fontWeight: 'bold'}}>Catégories</Text>
+                  <Icon name={'arrow-forward'} color={Colors.black} size={30} />
+               </View>
+               <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+                  <View style={styles.one_item_categorie}>
+                     <Image style={styles.image_for_categorie} source={require('_images/book_loi.jpg')} />
+                     <Text style={{color: Colors.secondary}} >Finance</Text>
+                  </View>
+                  <View style={styles.one_item_categorie}>
+                     <Image style={styles.image_for_categorie} source={require('_images/book_loi.jpg')} />
+                     <Text style={{color: Colors.secondary}} >Finance</Text>
+                  </View>
+                  <View style={styles.one_item_categorie}>
+                     <Image style={styles.image_for_categorie} source={require('_images/book_loi.jpg')} />
+                     <Text style={{color: Colors.secondary}} >Finance</Text>
+                  </View>
+                  <View style={styles.one_item_categorie}>
+                     <Image style={styles.image_for_categorie} source={require('_images/book_loi.jpg')} />
+                     <Text style={{color: Colors.secondary}} >Finance</Text>
+                  </View>
+               </View>
+            </View>
+
+            <View>
+               <View style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginVertical: 25}} >
+                  <Text style={{fontSize: 20, fontWeight: 'bold'}}>Publié récemment</Text>
+                  <Icon name={'arrow-forward'} color={Colors.black} size={30} />
+               </View>
+               <View>
+                  <SafeAreaView>
+                     <View style={styles.view_carousel}>
+                        <Carousel
+                           layout="default"
+                           ref={isCarousel}
+                           data={LastPublish}
+                           loop={true}
+                           loopClonesPerSide={5} //Nombre de clones à ajouter de chaque côté des éléments d'origine. Lors d'un balayage très rapide
+                           //fin des props spéficifique au section annonce
+                           renderItem={_renderItem}
+                           sliderWidth={150}
+                           itemWidth={240}
+                           inactiveSlideOpacity={0.9} //on uniformise tous les opacity
+                           inactiveSlideScale={1} //on uniformise tous les hauteur
+                           useScrollView={true}
+                        />
+                     </View>
+                  </SafeAreaView>
                </View>
             </View>
          </View>

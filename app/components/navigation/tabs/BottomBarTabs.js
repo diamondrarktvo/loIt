@@ -4,7 +4,7 @@ import { Colors } from '_theme/Colors';
 import { Icon } from '@rneui/themed';
 
 //import screen bottom tab
-import { Home, Profil, Quiz } from '_pages';
+import { Home, Profil, Quiz, Favoris } from '_pages';
 
 const Tab = createBottomTabNavigator();
 
@@ -41,6 +41,16 @@ export default function BottomBarTabs() {
                tabBarLabel: 'Quiz',
                tabBarIcon: ({ size, color }) => (
                   <Icon name={'help'} color={color} size={size} />
+               ),
+            }}
+         />
+         <Tab.Screen
+            name="Favoris"
+            component={Favoris}
+            options={{
+               tabBarLabel: 'Favoris',
+               tabBarIcon: ({ size, color }) => (
+                  <Icon name={'favorite'} color={color} size={size} />
                ),
             }}
          />
