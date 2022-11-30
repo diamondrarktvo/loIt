@@ -6,25 +6,15 @@ import { Icon } from '@rneui/themed';
 import Carousel from 'react-native-snap-carousel';
 
 import HeaderGlobal from '_components/header/HeaderGlobal';
-import {LastPublish} from '_utils';
+import { nameStackNavigation as nameNav } from '_utils/constante/NameStackNavigation';
+import {LastPublish, Categorie} from '_utils';
 import { Contexte } from '_utils';
 import { Colors } from '_theme/Colors';
 import { useState, useContext, useEffect } from 'react';
-import { useGetLocation } from '_utils/hooks/useGetLocation';
 
 export default function Home({ navigation }) {
    //all states
    const isCarousel = React.useRef(null);
-   const { position, errorMsgLocation } = useContext(Contexte);
-
-   //all logics
-   const getMyPosition = () => {
-      if (errorMsgLocation) {
-         console.log(errorMsgLocation);
-      } else {
-         console.log(position);
-      }
-   };
 
    //all efects
 
@@ -36,7 +26,7 @@ export default function Home({ navigation }) {
                style={styles.image_poster_style}
                source={item.poster_loi} //require(film.urlImage) si path absolue et {{ uri : urlImage}} si lien
             />
-            <Text style={{ marginVertical: 8, fontWeight: 'bold', fontSize: 17 }}>{ item.txt_loi }</Text>
+            <Text style={{ marginVertical: 8, fontWeight: 'bold', fontSize: 17 }}>{ item.txt_description }</Text>
             <Text style={{fontSize: 12}} >Publié le :{item.date_publish} </Text>
          </View>
       );
@@ -75,7 +65,14 @@ export default function Home({ navigation }) {
             <View style={styles.categories}>
                <View style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginVertical: 25}} >
                   <Text style={{fontSize: 22, fontWeight: 'bold'}}>Catégories</Text>
-                  <Icon name={'arrow-forward'} color={Colors.black} size={30} />
+                  <Icon name={'arrow-forward'} color={Colors.black} size={30} 
+                     onPress={() => {
+                        navigation.navigate(nameNav.listPage, {
+                           titleScreen: "Tous les catégories",
+                           dataToList: Categorie
+                        });
+                     }} 
+                  />
                </View>
                <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
                   <View style={styles.one_item_categorie}>
@@ -100,7 +97,14 @@ export default function Home({ navigation }) {
             <View>
                <View style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginVertical: 25}} >
                   <Text style={{fontSize: 20, fontWeight: 'bold'}}>Publié récemment</Text>
-                  <Icon name={'arrow-forward'} color={Colors.black} size={30} />
+                  <Icon name={'arrow-forward'} color={Colors.black} size={30} 
+                     onPress={() => {
+                        navigation.navigate(nameNav.listPage, {
+                           titleScreen: "Les derniers publiés",
+                           dataToList: LastPublish
+                        });
+                     }} 
+                  />
                </View>
                <View>
                   <SafeAreaView>

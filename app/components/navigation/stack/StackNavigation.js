@@ -8,6 +8,9 @@ import BottomBarTabs from '_components/navigation/tabs/BottomBarTabs';
 import { Profil, Map, Login, Register } from '_pages';
 import { configStack } from './configStack';
 import { Contexte } from '_utils';
+import ListingScreen from '_components/listing/ListingScreen';
+// import DetailScreen from '_components/detail/DetailScreen';
+
 
 let Stack = createStackNavigator();
 export default function StackNavigation() {
@@ -19,9 +22,25 @@ export default function StackNavigation() {
             <Stack.Screen name={nameNav.home} component={BottomBarTabs} />
          </Stack.Group>
 
-         {/* <Stack.Group screenOptions={configStack.screenOptionsForHeaderShown}>
-            <Stack.Screen name={nameNav.profil} component={Profil} />
-         </Stack.Group> */}
+         <Stack.Group screenOptions={configStack.screenOptionsForHeaderShown}>
+            <Stack.Screen
+               name={nameNav.listPage}
+               component={ListingScreen}
+               options={({ route }) => ({
+                  title: route.params.titleScreen,
+               })}
+            />
+         </Stack.Group>
+
+         <Stack.Group screenOptions={configStack.screenOptionsForHeaderShown}>
+            <Stack.Screen
+               name={nameNav.listPage}
+               component={ListingScreen}
+               options={({ route }) => ({
+                  title: route.params.titleScreen,
+               })}
+            />
+         </Stack.Group>
 
          <Stack.Group screenOptions={configStack.screenOptionsForHeaderShown}>
             <Stack.Screen name={nameNav.map} component={Map} />

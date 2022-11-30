@@ -5,6 +5,7 @@ export const styles = StyleSheet.create({
    view_container: {
       flex: 1,
       marginTop: 30,
+      marginBottom: 50,
       paddingTop: 20,
       paddingHorizontal: 15,
       backgroundColor: Colors.background,
@@ -54,7 +55,7 @@ export const styles = StyleSheet.create({
       textAlign: 'center',
    },
    action_bouton: {
-      marginVertical: 28,
+      marginVertical: 22,
       display: 'flex',
       flexDirection: 'row',
       alignContent: 'center',
