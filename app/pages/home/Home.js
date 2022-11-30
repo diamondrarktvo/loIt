@@ -2,6 +2,7 @@ import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { styles } from './styles';
 import { Icon } from '@rneui/themed';
+// import 'react-circular-progressbar/dist/styles.css';
 
 import HeaderGlobal from '_components/header/HeaderGlobal';
 import { Contexte } from '_utils';
@@ -44,6 +45,7 @@ export default function Home({ navigation }) {
                      <Text>Adventure</Text>
                      <Text>Continue de lire</Text>
                   </View>
+                  <Icon name={'restart'} color={Colors.white} size={18} />
                </View>
             </View>
          </View>
