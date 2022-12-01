@@ -24,6 +24,18 @@ export const LastPublish = [
       date_publish: '26/05/2022',
       poster_loi: require('_images/book_loi.jpg'),
    },
+   {
+      id: 5,
+      txt_description: 'Test farany e',
+      date_publish: '26/05/2022',
+      poster_loi: require('_images/book_loi.jpg'),
+   },
+   {
+      id: 6,
+      txt_description: 'Test farany e',
+      date_publish: '26/05/2022',
+      poster_loi: require('_images/book_loi.jpg'),
+   },
 ];
 export const MockData = [
    {

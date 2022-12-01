@@ -28,7 +28,7 @@ export default function Listing({ navigation, route }) {
             onPress={() => {
                navigation.navigate(nameNav.detailPage, {
                   titleScreen: `Article n° ${item.id}`,
-                  idToViewDetail: item.id,
+                  articleToViewDetail: item,
                });
             }}
          >
@@ -63,7 +63,7 @@ export default function Listing({ navigation, route }) {
                      style={{
                         display: 'flex',
                         flexDirection: 'row',
-                        width: 150,
+                        width: 140,
                         justifyContent: 'space-between',
                         alignItems: 'flex-end',
                      }}
@@ -83,7 +83,7 @@ export default function Listing({ navigation, route }) {
                         <Text
                            style={{
                               fontSize: 14,
-                              marginLeft: 5,
+                              marginLeft: 2,
                            }}
                         >
                            Pas encore lu
@@ -93,7 +93,7 @@ export default function Listing({ navigation, route }) {
                         style={{
                            display: 'flex',
                            flexDirection: 'row',
-                           width: 120,
+                           width: 108,
                            justifyContent: 'space-evenly',
                         }}
                      >

@@ -31,7 +31,9 @@ export default function StackNavigation() {
             />
          </Stack.Group>
 
-         <Stack.Group screenOptions={configStack.screenOptionsForHeaderShown}>
+         <Stack.Group
+            screenOptions={configStack.screenOptionsForHeaderTransparent}
+         >
             <Stack.Screen
                name={nameNav.detailPage}
                component={Detail}

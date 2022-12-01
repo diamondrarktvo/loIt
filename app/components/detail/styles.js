@@ -1,11 +1,51 @@
 import { Colors } from '_theme/Colors';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 
 export const styles = StyleSheet.create({
    view_container: {
       flex: 1,
-      paddingHorizontal: 8,
-      backgroundColor: Colors.background,
    },
-   container_safe: {},
+   image_bg_detail: {
+      flex: 1,
+      justifyContent: 'center',
+   },
+   info_in_landing_detail: {
+      marginTop: Dimensions.get('window').height < 700 ? 210 : 280,
+      marginLeft: 28,
+   },
+   description_section: {
+      paddingHorizontal: 26,
+      marginTop: 30,
+      borderTopLeftRadius: 50,
+      borderTopRightRadius: 50,
+      height: Dimensions.get('window').height < 700 ? '100%' : 480,
+      backgroundColor: Colors.white,
+   },
+   boutton_add_favorite: {
+      position: 'absolute',
+      right: 25,
+      top: -25,
+      backgroundColor: Colors.whiteRose,
+      width: 50,
+      height: 50,
+      padding: 10,
+      borderRadius: 50,
+   },
+   all_button_in_detail_screen: {
+      marginVertical: Dimensions.get('window').height < 700 ? 16 : 36,
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'space-around',
+   },
+   button_in_detail: {
+      textAlign: 'center',
+      backgroundColor: Colors.whiteRose,
+      paddingVertical: 10,
+      width: 150,
+      paddingHorizontal: 24,
+      color: Colors.violet,
+      borderRadius: 20,
+      fontSize: 21,
+      fontWeight: '800',
+   },
 });
