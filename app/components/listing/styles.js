@@ -8,8 +8,8 @@ export const styles = StyleSheet.create({
       backgroundColor: Colors.background,
    },
    view_render: {
-      height: 80,
       marginVertical: 8,
-      backgroundColor: Colors.whiteRose
-   }
+      display: 'flex',
+      flexDirection: 'row',
+   },
 });

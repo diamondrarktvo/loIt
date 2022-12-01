@@ -9,6 +9,7 @@ import {
    TouchableOpacity,
 } from 'react-native';
 import React, { useCallback, useEffect, useState } from 'react';
+import { nameStackNavigation as nameNav } from '_utils/constante/NameStackNavigation';
 // import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { styles } from './styles';
 import { Icon } from '@rneui/themed';
@@ -18,21 +19,113 @@ import { Colors } from '_theme/Colors';
 
 export default function Listing({ navigation, route }) {
    const dataForFlatList = route.params.dataToList;
-   console.log(dataForFlatList)
+   console.log(dataForFlatList);
    //all logics
    const _renderItem = useCallback(({ item }) => {
       return (
-         <View
-            style={styles.view_render}
+         <TouchableOpacity
+            activeOpacity={0.9}
             onPress={() => {
-                     navigation.navigate(nameNav.detailPage, {
-                        titleScreen: "Détails sur cette loi",
-                        idToViewDetail: item.id
-                     });
-                  }} 
-         >  
-            <Text>{item.txt_description} </Text>
-         </View>
+               navigation.navigate(nameNav.detailPage, {
+                  titleScreen: `Article n° ${item.id}`,
+                  idToViewDetail: item.id,
+               });
+            }}
+         >
+            <View style={styles.view_render}>
+               <Image
+                  source={item.poster_loi}
+                  style={{ width: 130, height: 150, borderRadius: 16 }}
+               />
+               <View
+                  style={{
+                     marginLeft: 12,
+                     display: 'flex',
+                     flexDirection: 'column',
+                     justifyContent: 'space-between',
+                  }}
+               >
+                  <View>
+                     <Text style={{ fontWeight: 'bold', fontSize: 18 }}>
+                        Article n° {item.id}
+                     </Text>
+                     <Text style={{ fontSize: 12, marginBottom: 8 }}>
+                        Publié le : {item.date_publish}
+                     </Text>
+                  </View>
+                  <Text
+                     style={{ fontSize: 16, flex: 2, width: 210 }}
+                     numberOfLines={4}
+                  >
+                     {item.txt_description}{' '}
+                  </Text>
+                  <View
+                     style={{
+                        display: 'flex',
+                        flexDirection: 'row',
+                        width: 150,
+                        justifyContent: 'space-between',
+                        alignItems: 'flex-end',
+                     }}
+                  >
+                     <View
+                        style={{
+                           display: 'flex',
+                           flexDirection: 'row',
+                           alignItems: 'center',
+                        }}
+                     >
+                        <Icon
+                           name={'sentiment-very-dissatisfied'}
+                           color={Colors.orange}
+                           size={18}
+                        />
+                        <Text
+                           style={{
+                              fontSize: 14,
+                              marginLeft: 5,
+                           }}
+                        >
+                           Pas encore lu
+                        </Text>
+                     </View>
+                     <View
+                        style={{
+                           display: 'flex',
+                           flexDirection: 'row',
+                           width: 120,
+                           justifyContent: 'space-evenly',
+                        }}
+                     >
+                        <TouchableOpacity
+                           activeOpacity={0.8}
+                           onPress={() => {
+                              alert('PDF');
+                           }}
+                        >
+                           <Icon
+                              name={'picture-as-pdf'}
+                              color={Colors.violet}
+                              size={28}
+                           />
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                           activeOpacity={0.8}
+                           onPress={() => {
+                              alert("J'adore");
+                           }}
+                        >
+                           <Icon
+                              name={'favorite'}
+                              color={Colors.orange}
+                              size={28}
+                           />
+                        </TouchableOpacity>
+                     </View>
+                  </View>
+               </View>
+            </View>
+         </TouchableOpacity>
       );
    }, []);
 

@@ -34,7 +34,8 @@ const styles = StyleSheet.create({
    },
    icon_user: {
       backgroundColor: Colors.violet,
-      fontSize: 27,
+      fontSize: 28,
+      paddingVertical: 2,
       fontWeight: 'bold',
       width: 40,
       height: 40,

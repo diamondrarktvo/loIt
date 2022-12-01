@@ -1,5 +1,11 @@
 import React from 'react';
-import { View, Text, Image, SafeAreaView, TouchableOpacity } from 'react-native';
+import {
+   View,
+   Text,
+   Image,
+   SafeAreaView,
+   TouchableOpacity,
+} from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { styles } from './styles';
 import { Icon } from '@rneui/themed';
@@ -7,7 +13,7 @@ import Carousel from 'react-native-snap-carousel';
 
 import HeaderGlobal from '_components/header/HeaderGlobal';
 import { nameStackNavigation as nameNav } from '_utils/constante/NameStackNavigation';
-import {LastPublish, Categorie} from '_utils';
+import { LastPublish, Categorie } from '_utils';
 import { Contexte } from '_utils';
 import { Colors } from '_theme/Colors';
 import { useState, useContext, useEffect } from 'react';
@@ -21,13 +27,20 @@ export default function Home({ navigation }) {
    //all components
    const _renderItem = ({ item }) => {
       return (
-         <View key={item.id} style={styles.view_container_renderItem} >
+         <View key={item.id} style={styles.view_container_renderItem}>
             <Image
                style={styles.image_poster_style}
                source={item.poster_loi} //require(film.urlImage) si path absolue et {{ uri : urlImage}} si lien
             />
-            <Text style={{ marginVertical: 8, fontWeight: 'bold', fontSize: 17 }}>{ item.txt_description }</Text>
-            <Text style={{fontSize: 12}} >Publié le :{item.date_publish} </Text>
+            <Text
+               style={{ marginVertical: 8, fontWeight: 'bold', fontSize: 17 }}
+               numberOfLines={1}
+            >
+               {item.txt_description}
+            </Text>
+            <Text style={{ fontSize: 12 }}>
+               Publié le :{item.date_publish}{' '}
+            </Text>
          </View>
       );
    };
@@ -55,7 +68,9 @@ export default function Home({ navigation }) {
                         alignItems: 'flex-start',
                      }}
                   >
-                     <Text style={{ fontSize: 16 ,fontWeight: 'bold' }}>Adventure</Text>
+                     <Text style={{ fontSize: 16, fontWeight: 'bold' }}>
+                        Adventure
+                     </Text>
                      <Text>Continue de lire</Text>
                   </View>
                   <Icon name={'autorenew'} color={Colors.white} size={38} />
@@ -63,47 +78,91 @@ export default function Home({ navigation }) {
             </View>
 
             <View style={styles.categories}>
-               <View style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginVertical: 25}} >
-                  <Text style={{fontSize: 22, fontWeight: 'bold'}}>Catégories</Text>
-                  <Icon name={'arrow-forward'} color={Colors.black} size={30} 
+               <View
+                  style={{
+                     display: 'flex',
+                     flexDirection: 'row',
+                     justifyContent: 'space-between',
+                     alignItems: 'center',
+                     marginVertical: 25,
+                  }}
+               >
+                  <Text style={{ fontSize: 22, fontWeight: 'bold' }}>
+                     Catégories
+                  </Text>
+                  <Icon
+                     name={'arrow-forward'}
+                     color={Colors.black}
+                     size={30}
                      onPress={() => {
                         navigation.navigate(nameNav.listPage, {
-                           titleScreen: "Tous les catégories",
-                           dataToList: Categorie
+                           titleScreen: 'Tous les catégories',
+                           dataToList: Categorie,
                         });
-                     }} 
+                     }}
                   />
                </View>
-               <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+               <View
+                  style={{
+                     display: 'flex',
+                     flexDirection: 'row',
+                     justifyContent: 'space-between',
+                  }}
+               >
                   <View style={styles.one_item_categorie}>
-                     <Image style={styles.image_for_categorie} source={require('_images/book_loi.jpg')} />
-                     <Text style={{color: Colors.secondary}} >Finance</Text>
+                     <Image
+                        style={styles.image_for_categorie}
+                        source={require('_images/book_loi.jpg')}
+                     />
+                     <Text style={{ color: Colors.secondary }}>Finance</Text>
                   </View>
                   <View style={styles.one_item_categorie}>
-                     <Image style={styles.image_for_categorie} source={require('_images/book_loi.jpg')} />
-                     <Text style={{color: Colors.secondary}} >Finance</Text>
+                     <Image
+                        style={styles.image_for_categorie}
+                        source={require('_images/book_loi.jpg')}
+                     />
+                     <Text style={{ color: Colors.secondary }}>Finance</Text>
                   </View>
                   <View style={styles.one_item_categorie}>
-                     <Image style={styles.image_for_categorie} source={require('_images/book_loi.jpg')} />
-                     <Text style={{color: Colors.secondary}} >Finance</Text>
+                     <Image
+                        style={styles.image_for_categorie}
+                        source={require('_images/book_loi.jpg')}
+                     />
+                     <Text style={{ color: Colors.secondary }}>Finance</Text>
                   </View>
                   <View style={styles.one_item_categorie}>
-                     <Image style={styles.image_for_categorie} source={require('_images/book_loi.jpg')} />
-                     <Text style={{color: Colors.secondary}} >Finance</Text>
+                     <Image
+                        style={styles.image_for_categorie}
+                        source={require('_images/book_loi.jpg')}
+                     />
+                     <Text style={{ color: Colors.secondary }}>Finance</Text>
                   </View>
                </View>
             </View>
 
             <View>
-               <View style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginVertical: 25}} >
-                  <Text style={{fontSize: 20, fontWeight: 'bold'}}>Publié récemment</Text>
-                  <Icon name={'arrow-forward'} color={Colors.black} size={30} 
+               <View
+                  style={{
+                     display: 'flex',
+                     flexDirection: 'row',
+                     justifyContent: 'space-between',
+                     alignItems: 'center',
+                     marginVertical: 25,
+                  }}
+               >
+                  <Text style={{ fontSize: 20, fontWeight: 'bold' }}>
+                     Publié récemment
+                  </Text>
+                  <Icon
+                     name={'arrow-forward'}
+                     color={Colors.black}
+                     size={30}
                      onPress={() => {
                         navigation.navigate(nameNav.listPage, {
-                           titleScreen: "Les derniers publiés",
-                           dataToList: LastPublish
+                           titleScreen: 'Les derniers publiés',
+                           dataToList: LastPublish,
                         });
-                     }} 
+                     }}
                   />
                </View>
                <View>
