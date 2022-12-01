@@ -13,7 +13,7 @@ import Carousel from 'react-native-snap-carousel';
 
 import HeaderGlobal from '_components/header/HeaderGlobal';
 import { nameStackNavigation as nameNav } from '_utils/constante/NameStackNavigation';
-import { LastPublish, Categorie, Types } from '_utils';
+import { MockData, LastPublish, Categorie, Types } from '_utils';
 import { Contexte } from '_utils';
 import { Colors } from '_theme/Colors';
 import { useState, useContext, useEffect } from 'react';
@@ -137,6 +137,53 @@ export default function Home({ navigation }) {
                      />
                      <Text style={{ color: Colors.secondary }}>Finance</Text>
                   </View>
+               </View>
+            </View>
+
+            <View>
+               <View
+                  style={{
+                     display: 'flex',
+                     flexDirection: 'row',
+                     justifyContent: 'space-between',
+                     alignItems: 'center',
+                     marginVertical: 25,
+                  }}
+               >
+                  <Text style={{ fontSize: 20, fontWeight: 'bold' }}>
+                     Les articles
+                  </Text>
+                  <Icon
+                     name={'arrow-forward'}
+                     color={Colors.black}
+                     size={30}
+                     onPress={() => {
+                        navigation.navigate(nameNav.listPage, {
+                           titleScreen: 'Tous les articles',
+                           dataToList: MockData,
+                        });
+                     }}
+                  />
+               </View>
+               <View>
+                  <SafeAreaView>
+                     <View style={styles.view_carousel}>
+                        <Carousel
+                           layout="default"
+                           ref={isCarousel}
+                           data={LastPublish}
+                           loop={true}
+                           loopClonesPerSide={5} //Nombre de clones à ajouter de chaque côté des éléments d'origine. Lors d'un balayage très rapide
+                           //fin des props spéficifique au section annonce
+                           renderItem={_renderItem}
+                           sliderWidth={150}
+                           itemWidth={240}
+                           inactiveSlideOpacity={0.9} //on uniformise tous les opacity
+                           inactiveSlideScale={1} //on uniformise tous les hauteur
+                           useScrollView={true}
+                        />
+                     </View>
+                  </SafeAreaView>
                </View>
             </View>
 

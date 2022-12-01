@@ -23,7 +23,6 @@ export default function Listing({ navigation, route }) {
       (item) => item.catg === route.params.categorie
    );
    const dataForFlatList = route.params.dataToList ?? dataPerDomaine;
-   console.log(route.params.categorie);
    //all logics
    const _renderItem = useCallback(({ item }) => {
       return (
