@@ -95,7 +95,7 @@ export default function Home({ navigation }) {
                      color={Colors.black}
                      size={30}
                      onPress={() => {
-                        navigation.navigate(nameNav.listPage, {
+                        navigation.navigate(nameNav.listCategorie, {
                            titleScreen: 'Tous les catégories',
                            dataToList: Categorie,
                         });

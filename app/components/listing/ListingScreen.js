@@ -13,12 +13,16 @@ import { nameStackNavigation as nameNav } from '_utils/constante/NameStackNaviga
 // import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { styles } from './styles';
 import { Icon } from '@rneui/themed';
+import { MockData } from '_utils';
 
 import HeaderGlobal from '_components/header/HeaderGlobal';
 import { Colors } from '_theme/Colors';
 
 export default function Listing({ navigation, route }) {
-   const dataForFlatList = route.params.dataToList;
+   const dataForOneCatg = MockData.filter(
+      (item) => item.catg === route.params.categorie
+   );
+   const dataForFlatList = route.params.dataToList ?? dataForOneCatg;
    console.log(dataForFlatList);
    //all logics
    const _renderItem = useCallback(({ item }) => {
