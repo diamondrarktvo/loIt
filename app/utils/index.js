@@ -1,7 +1,7 @@
 import { nameStackNavigation } from './constante/NameStackNavigation';
 import { ContexteProvider, Contexte } from './contexte/Contexte';
 import { positionOfAllPolice } from './constante/CoordinatePolice';
-import { MockData, LastPublish, Categorie } from './constante/MockData';
+import { MockData, LastPublish, Categorie, Types } from './constante/MockData';
 
 export {
    nameStackNavigation,
@@ -10,5 +10,6 @@ export {
    positionOfAllPolice,
    LastPublish,
    MockData,
+   Types,
    Categorie,
 };

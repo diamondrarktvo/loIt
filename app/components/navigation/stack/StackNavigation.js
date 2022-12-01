@@ -10,6 +10,7 @@ import { configStack } from './configStack';
 import { Contexte } from '_utils';
 import Listing from '_components/listing/ListingScreen';
 import ListingCatg from '_components/allCategories/ListingCatg';
+import ListingTypes from '_components/allTypes/ListingTypes';
 import Detail from '_components/detail/DetailScreen';
 
 let Stack = createStackNavigator();
@@ -30,9 +31,18 @@ export default function StackNavigation() {
                   title: route.params.titleScreen,
                })}
             />
+            
             <Stack.Screen
                name={nameNav.listCategorie}
                component={ListingCatg}
+               options={({ route }) => ({
+                  title: route.params.titleScreen,
+               })}
+            />
+
+            <Stack.Screen
+               name={nameNav.listType}
+               component={ListingTypes}
                options={({ route }) => ({
                   title: route.params.titleScreen,
                })}

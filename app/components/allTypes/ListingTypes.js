@@ -17,17 +17,21 @@ import { Icon } from '@rneui/themed';
 
 import HeaderGlobal from '_components/header/HeaderGlobal';
 import { Colors } from '_theme/Colors';
+import { Types } from '_utils';
 
-export default function ListingCatg({ navigation, route }) {
-   const dataForFlatList = route.params.dataToList;
+export default function ListingTypes({ navigation, route }) {
+   const allCatgByTypes = Types.filter(
+      (item) => item.categorie === route.params.domaine
+   );
+   const dataForFlatList = allCatgByTypes;
    const _renderItem = ({ item }) => {
       return (
          <View style={styles.view_render} key={item.id}>
             <TouchableOpacity
                onPress={() => {
-                  navigation.navigate(nameNav.listType, {
+                  navigation.navigate(nameNav.listPage, {
                      titleScreen: `${item.txt_description}`,
-                     domaine: item.txt_description,
+                     categorie: item.categorie,
                   });
                }}
             >

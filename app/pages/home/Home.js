@@ -13,7 +13,7 @@ import Carousel from 'react-native-snap-carousel';
 
 import HeaderGlobal from '_components/header/HeaderGlobal';
 import { nameStackNavigation as nameNav } from '_utils/constante/NameStackNavigation';
-import { LastPublish, Categorie } from '_utils';
+import { LastPublish, Categorie, Types } from '_utils';
 import { Contexte } from '_utils';
 import { Colors } from '_theme/Colors';
 import { useState, useContext, useEffect } from 'react';
@@ -30,7 +30,7 @@ export default function Home({ navigation }) {
          <View key={item.id} style={styles.view_container_renderItem}>
             <Image
                style={styles.image_poster_style}
-               source={item.poster_loi} //require(film.urlImage) si path absolue et {{ uri : urlImage}} si lien
+               source={item.poster_loi} 
             />
             <Text
                style={{ marginVertical: 8, fontWeight: 'bold', fontSize: 17 }}
@@ -88,7 +88,7 @@ export default function Home({ navigation }) {
                   }}
                >
                   <Text style={{ fontSize: 22, fontWeight: 'bold' }}>
-                     Catégories
+                     Thématiques
                   </Text>
                   <Icon
                      name={'arrow-forward'}
@@ -96,7 +96,7 @@ export default function Home({ navigation }) {
                      size={30}
                      onPress={() => {
                         navigation.navigate(nameNav.listCategorie, {
-                           titleScreen: 'Tous les catégories',
+                           titleScreen: 'Tous les thèmes',
                            dataToList: Categorie,
                         });
                      }}

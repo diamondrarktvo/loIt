@@ -19,11 +19,11 @@ import HeaderGlobal from '_components/header/HeaderGlobal';
 import { Colors } from '_theme/Colors';
 
 export default function Listing({ navigation, route }) {
-   const dataForOneCatg = MockData.filter(
+   const dataPerDomaine = MockData.filter(
       (item) => item.catg === route.params.categorie
    );
-   const dataForFlatList = route.params.dataToList ?? dataForOneCatg;
-   console.log(dataForFlatList);
+   const dataForFlatList = route.params.dataToList ?? dataPerDomaine;
+   console.log(route.params.categorie);
    //all logics
    const _renderItem = useCallback(({ item }) => {
       return (

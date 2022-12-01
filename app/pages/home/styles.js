@@ -44,7 +44,7 @@ export const styles = StyleSheet.create({
       height: 42,
       borderRadius: 62,
    },
-   /*Categorie*/
+   /*Thematique*/
    one_item_categorie: {
       width: 60,
       height: 90,
@@ -58,8 +58,19 @@ export const styles = StyleSheet.create({
       height: 60,
       borderRadius: 60
    },
-   view_container_renderItem: {
-
+   /*Types*/
+   one_item_type: {
+      width: 60,
+      height: 90,
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'space-between',
+      alignItems: 'center'
+   },
+   image_for_types: {
+      width: 80,
+      height: 70,
+      borderRadius: 20
    },
    view_carousel: {
       width: '100%',
