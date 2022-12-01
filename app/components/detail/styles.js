@@ -41,7 +41,7 @@ export const styles = StyleSheet.create({
       textAlign: 'center',
       backgroundColor: Colors.whiteRose,
       paddingVertical: 10,
-      width: 150,
+      width: 140,
       paddingHorizontal: 24,
       color: Colors.violet,
       borderRadius: 20,
