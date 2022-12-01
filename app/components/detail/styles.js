@@ -32,7 +32,8 @@ export const styles = StyleSheet.create({
       borderRadius: 50,
    },
    all_button_in_detail_screen: {
-      marginVertical: Dimensions.get('window').height < 700 ? 16 : 36,
+      marginTop: Dimensions.get('window').height < 700 ? 10 : 12,
+      marginBottom: Dimensions.get('window').height < 700 ? 14 : 46,
       display: 'flex',
       flexDirection: 'row',
       justifyContent: 'space-around',

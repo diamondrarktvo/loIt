@@ -7,6 +7,7 @@ import {
    ImageBackground,
    Modal,
    SafeAreaView,
+   ScrollView,
    TouchableOpacity,
    Dimensions,
 } from 'react-native';
@@ -46,7 +47,7 @@ export default function Detail({ navigation, route }) {
                         color: Colors.white,
                      }}
                   >
-                     Article n° 1
+                     Article n° {oneArticle.id}
                   </Text>
                   <Text
                      style={{
@@ -55,7 +56,7 @@ export default function Detail({ navigation, route }) {
                         color: Colors.white,
                      }}
                   >
-                     Publié le : 20/12/2022
+                     Publié le : {oneArticle.date_publish}
                   </Text>
                </View>
                <View style={styles.description_section}>
@@ -77,27 +78,27 @@ export default function Detail({ navigation, route }) {
                         fontSize: 22,
                         fontWeight: 'bold',
                         marginTop: 22,
-                        marginBottom: 16,
+                        marginBottom: 14,
                      }}
                   >
                      Descriptions
                   </Text>
-                  <Text
+                  <ScrollView
                      style={{
-                        fontSize:
-                           Dimensions.get('window').height < 700 ? 15 : 18,
-                        textAlign: 'justify',
+                        paddingVertical: 8,
+                        paddingRight: 4,
                      }}
                   >
-                     Non cupidatat quis et cillum proident reprehenderit sunt
-                     cillum. Mollit commodo quis officia voluptate. Nulla
-                     adipisicing quis proident nostrud in exercitation aliquip
-                     deserunt exercitation. Ipsum nostrud dolore culpa minim
-                     veniam aute labore aliqua eiusmod aliqua. Commodo aliqua
-                     minim elit ex tempor in mollit duis. Quis ea veniam quis
-                     amet ipsum pariatur dolor cillum id laboris veniam fugiat
-                     occaecat.
-                  </Text>
+                     <Text
+                        style={{
+                           fontSize:
+                              Dimensions.get('window').height < 700 ? 15 : 18,
+                           textAlign: 'left',
+                        }}
+                     >
+                        {oneArticle.txt_description}
+                     </Text>
+                  </ScrollView>
                   <View style={styles.all_button_in_detail_screen}>
                      <TouchableOpacity
                         onPress={() => {
