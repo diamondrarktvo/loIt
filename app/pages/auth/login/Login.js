@@ -1,13 +1,14 @@
 import { Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import styles from './styles';
-import { Contexte } from '_utils';
+import { useSelector, useDispatch } from 'react-redux';
 import { useState, useContext, useCallback } from 'react';
 import { Colors } from '_theme/Colors';
 import { AuthService } from '_utils/services/authService';
+import { changeStatusUser } from '_utils/redux/actions/action_creators';
 
 export default function Login({ navigation }) {
-   const { isSigned, setIsSigned } = useContext(Contexte);
+   const dispatch = useDispatch();
    const [erreur, setErreur] = useState(false);
    const [loading, setLoading] = useState(false);
    const [errormessage, setErrorMessage] = useState('');
@@ -95,7 +96,7 @@ export default function Login({ navigation }) {
                               fontWeight: 'bold',
                               color: '#fff',
                            }}
-                           onPress={() => setIsSigned(true)}
+                           onPress={() => dispatch(changeStatusUser())}
                            // onPress={() => onSubmit()}
                         >
                            {loading ? 'Loading...' : 'Se connecter'}

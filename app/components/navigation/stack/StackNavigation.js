@@ -7,7 +7,7 @@ import BottomBarTabs from '_components/navigation/tabs/BottomBarTabs';
 /*screen normal |screen indépendant à afficher|*/
 import { Profil, Map, Login, Register } from '_pages';
 import { configStack } from './configStack';
-import { Contexte } from '_utils';
+import { useSelector, useDispatch } from 'react-redux';
 import Listing from '_components/listing/ListingScreen';
 import ListingCatg from '_components/allCategories/ListingCatg';
 import ListingTypes from '_components/allTypes/ListingTypes';
@@ -15,7 +15,7 @@ import Detail from '_components/detail/DetailScreen';
 
 let Stack = createStackNavigator();
 export default function StackNavigation() {
-   const { isSigned, setIsSigned } = useContext(Contexte);
+   const isSigned = useSelector((selector) => selector.user.profil.isConnected);
 
    return isSigned ? (
       <Stack.Navigator initialRouteName={nameNav.home}>
@@ -31,7 +31,7 @@ export default function StackNavigation() {
                   title: route.params.titleScreen,
                })}
             />
-            
+
             <Stack.Screen
                name={nameNav.listCategorie}
                component={ListingCatg}

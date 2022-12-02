@@ -9,13 +9,15 @@ import {
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 //import { Icon } from '@rneui/themed';
 import { useState, useContext } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Colors } from '_theme/Colors';
 import { Contexte } from '_utils';
 import styles from './styles';
 import { AuthService } from '_utils/services/authService';
+import { changeStatusUser } from '_utils/redux/actions/action_creators';
 
 export default function Register({ navigation }) {
-   const { isSigned, setIsSigned } = useContext(Contexte);
+   const dispatch = useDispatch();
    const [loading, setLoading] = useState(false);
    const [erreur, setErreur] = useState(false);
    const [errormessage, setErrorMessage] = useState('');
@@ -165,7 +167,7 @@ export default function Register({ navigation }) {
                            fontWeight: 'bold',
                            color: Colors.white,
                         }}
-                        onPress={() => onSubmit()}
+                        onPress={() => dispatch(changeStatusUser())}
                      >
                         {/* {loading ? 'Loading...' : "S'inscrire"} */}
                         S'inscrire

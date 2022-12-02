@@ -11,6 +11,7 @@ import {
    TouchableOpacity,
    Dimensions,
 } from 'react-native';
+import * as Speech from 'expo-speech';
 import React, { useCallback, useEffect, useState } from 'react';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { styles } from './styles';
@@ -22,6 +23,10 @@ import { Colors } from '_theme/Colors';
 export default function Detail({ navigation, route }) {
    const oneArticle = route.params.articleToViewDetail;
    console.log(oneArticle);
+
+   const speak = (txt_to_say) => {
+      Speech.speak(txt_to_say);
+   };
    return (
       <View style={styles.view_container}>
          <StatusBar
@@ -115,9 +120,7 @@ export default function Detail({ navigation, route }) {
                         </Text>
                      </TouchableOpacity>
                      <TouchableOpacity
-                        onPress={() => {
-                           alert('Ecoutés bien');
-                        }}
+                        onPress={() => speak(oneArticle.txt_description)}
                      >
                         <Text style={[styles.button_in_detail]}>
                            {' '}

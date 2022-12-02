@@ -7,14 +7,16 @@ import { ContexteProvider } from '_utils';
 import { Colors } from '_theme/Colors';
 
 import Navigation from '_components/navigation/navigation';
+import { Provider } from 'react-redux';
+import { store } from '_utils/redux/store';
 
 export default function App() {
    return (
-      <ContexteProvider>
+      <Provider store={store}>
          <SafeAreaProvider>
             <StatusBar backgroundColor={'white'} />
             <Navigation />
          </SafeAreaProvider>
-      </ContexteProvider>
+      </Provider>
    );
 }
