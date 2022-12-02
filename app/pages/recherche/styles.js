@@ -11,12 +11,11 @@ export const styles = StyleSheet.create({
    },
    head_content: {
       marginTop: 14,
-      marginBottom: 6,
    },
    view_for_filtre: {
       backgroundColor: Colors.whiteRose,
       padding: 20,
-      marginVertical: 16,
+      marginVertical: 12,
       display: 'flex',
       flexDirection: 'row',
       justifyContent: 'space-between',
@@ -25,6 +24,7 @@ export const styles = StyleSheet.create({
    view_for_input_search: {
       display: 'flex',
       flexDirection: 'row',
+      marginTop: 8,
    },
    input: {
       borderWidth: 1,
