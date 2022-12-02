@@ -1,9 +1,9 @@
 export const Colors = {
-   blueWelcome: '#3490dc',
+   blueWelcome: '#061959',
    blue: '#1F54D3',
    white: '#FBFCFD',
    grey: '#ACB1C1',
-   violet: '#633DFF',
+   violet: '#4742de',
    whiteRose: '#E2CCFF',
    black: '#1E2944',
    secondary: '#999DEC',

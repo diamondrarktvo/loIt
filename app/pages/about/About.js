@@ -5,7 +5,6 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { styles } from './styles';
 import { Icon } from '@rneui/themed';
 import { Contexte } from '_utils';
-import { changeStatusUser } from '_utils/redux/actions/action_creators';
 
 export default function About({ navigation }) {
    const dispatch = useDispatch();
@@ -74,7 +73,7 @@ export default function About({ navigation }) {
                   >
                      <Text
                         style={[styles.action, { color: Colors.white }]}
-                        onPress={() => dispatch(changeStatusUser())}
+                        onPress={() => alert('bye')}
                      >
                         Déconnexion
                      </Text>

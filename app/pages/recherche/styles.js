@@ -29,7 +29,7 @@ export const styles = StyleSheet.create({
    input: {
       borderWidth: 1,
       padding: 16,
-      width: Dimensions.get('window').width < 700 ? 270 : 300,
+      width: Dimensions.get('window').width < 370 ? 270 : 300,
       borderRightWidth: 0,
    },
    boutton_search: {

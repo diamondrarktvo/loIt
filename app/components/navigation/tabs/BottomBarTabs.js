@@ -60,7 +60,7 @@ export default function BottomBarTabs() {
             options={{
                tabBarLabel: 'A propos',
                tabBarIcon: ({ size, color }) => (
-                  <Icon name={'person'} color={color} size={size} />
+                  <Icon name={'info'} color={color} size={size} />
                ),
             }}
          />

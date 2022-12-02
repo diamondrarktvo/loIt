@@ -1,5 +1,5 @@
 import { produce } from 'immer';
-import { changeStatusUser } from '../actions/action_creators';
+import { getStarted } from '../actions/action_creators';
 
 const initialState = {
    started: false,
@@ -7,7 +7,7 @@ const initialState = {
 
 export const functionnalityReducer = (state = initialState, action) => {
    switch (action.type) {
-      case changeStatusUser().type:
+      case getStarted().type:
          return produce(state, (draft) => {
             draft.started = !draft.started;
          });

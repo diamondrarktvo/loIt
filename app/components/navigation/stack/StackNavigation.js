@@ -4,7 +4,7 @@ import { nameStackNavigation as nameNav } from '_utils';
 /*tab Navitation (top and bottom both)*/
 import BottomBarTabs from '_components/navigation/tabs/BottomBarTabs';
 /*screen normal |screen indépendant à afficher|*/
-import { Map, Welcome } from '_pages';
+import { Welcome } from '_pages';
 import { configStack } from './configStack';
 import { useSelector, useDispatch } from 'react-redux';
 import Listing from '_components/listing/ListingScreen';
@@ -58,10 +58,6 @@ export default function StackNavigation() {
                   title: route.params.titleScreen,
                })}
             />
-         </Stack.Group>
-
-         <Stack.Group screenOptions={configStack.screenOptionsForHeaderShown}>
-            <Stack.Screen name={nameNav.map} component={Map} />
          </Stack.Group>
       </Stack.Navigator>
    ) : (
