@@ -1,5 +1,5 @@
 import { Colors } from '_theme/Colors';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 
 export const styles = StyleSheet.create({
    view_container: {
@@ -10,61 +10,23 @@ export const styles = StyleSheet.create({
       paddingHorizontal: 15,
       backgroundColor: Colors.background,
    },
-   head_profil: {
+   head_banniere: {
       flex: 2,
       justifyContent: 'center',
       alignItems: 'center',
    },
-   profil_image: {
-      width: 150,
-      height: 150,
+   banniere_image: {
+      width: Dimensions.get('window').width < 370 ? 300 : 350,
+      height: Dimensions.get('window').height < 700 ? 270 : 320,
    },
-   user_name: {
-      fontSize: 28,
-      fontWeight: 'bold',
+   view_content_about: {
+      marginVertical: 28,
    },
-   information_profil: {
-      flex: 2,
-   },
-   label_information_profil: {
-      color: Colors.grey,
+   button_link_about: {
+      paddingVertical: 22,
+      marginHorizontal: 8,
+      borderTopWidth: 1,
       fontSize: 16,
-      marginTop: 30,
-   },
-   value_information_profil: {
-      color: Colors.black,
-      fontWeight: 'bold',
-      fontSize: 18,
-   },
-   view_value_information: {
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      alignItems: 'flex-end',
-      borderBottomWidth: 1,
-      borderBottomColor: Colors.grey,
-   },
-   validation_value: {
-      color: 'green',
-   },
-   footer_profil: {
-      flex: 1,
-   },
-   action: {
-      fontWeight: 'bold',
-      fontSize: 20,
-      textAlign: 'center',
-   },
-   action_bouton: {
-      marginVertical: 22,
-      display: 'flex',
-      flexDirection: 'row',
-      alignContent: 'center',
-      justifyContent: 'space-around',
-   },
-   bouton: {
-      padding: 15,
-      borderRadius: 25,
-      width: 250,
-      marginTop: 25,
+      borderColor: Colors.grey,
    },
 });

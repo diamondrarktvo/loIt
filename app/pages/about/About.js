@@ -12,73 +12,59 @@ export default function About({ navigation }) {
    return (
       <KeyboardAwareScrollView style={{ backgroundColor: Colors.background }}>
          <View style={styles.view_container}>
-            <View style={styles.head_profil}>
+            <View style={styles.head_banniere}>
+               <Text
+                  style={{ fontSize: 32, fontWeight: 'bold', marginBottom: 8 }}
+               >
+                  A propos
+               </Text>
                <Image
-                  style={styles.profil_image}
-                  source={require('_images/profil.png')}
+                  style={styles.banniere_image}
+                  source={require('_images/bg_loi.jpg')}
                />
-               <Text style={styles.user_name}>Diamondra</Text>
-            </View>
-            <View style={styles.information_profil}>
-               <Text style={styles.label_information_profil}>Prénom : </Text>
-               <View style={styles.view_value_information}>
-                  <Text style={styles.value_information_profil}>Diamondra</Text>
-                  <Icon name={'verified'} color={'green'} />
-               </View>
-
-               <Text style={styles.label_information_profil}>
-                  Lien vers compte facebook :{' '}
+               <Text
+                  style={{
+                     fontSize: 38,
+                     fontWeight: 'bold',
+                     marginVertical: 8,
+                     color: Colors.violet,
+                  }}
+               >
+                  LoIT
                </Text>
-               <View style={styles.view_value_information}>
-                  <Text style={styles.value_information_profil}>
-                     /dama.rktvo
-                  </Text>
-                  <Icon name={'error'} color={Colors.orange} />
-               </View>
-
-               <Text style={styles.label_information_profil}>
-                  Numéro télephone :{' '}
-               </Text>
-               <View style={styles.view_value_information}>
-                  <Text style={styles.value_information_profil}>
-                     034 92 956 84
-                  </Text>
-                  <Icon name={'verified'} color={'green'} />
-               </View>
-
-               <Text style={styles.label_information_profil}>Adresse : </Text>
-               <View style={styles.view_value_information}>
-                  <Text style={styles.value_information_profil}>
-                     Amboditsiry
-                  </Text>
-                  <Icon name={'verified'} color={'green'} />
-               </View>
-
-               <Text style={styles.label_information_profil}>
-                  Mot de passe :{' '}
-               </Text>
-               <View style={styles.view_value_information}>
-                  <Text style={styles.value_information_profil}>
-                     MotDePasse
-                  </Text>
-                  <Icon name={'verified'} color={'green'} />
-               </View>
+               <Text>Version 1.0.0</Text>
             </View>
 
-            <View style={styles.footer_profil}>
-               <View style={styles.action_bouton}>
-                  <TouchableOpacity
-                     activeOpacity={0.7}
-                     style={[styles.bouton, { backgroundColor: Colors.orange }]}
+            <View style={styles.view_content_about}>
+               <TouchableOpacity
+                  activeOpacity={0.6}
+                  onPress={() => alert('Politique de confidentialité')}
+               >
+                  <Text style={styles.button_link_about}>
+                     Politique de confidentialité
+                  </Text>
+               </TouchableOpacity>
+               <TouchableOpacity activeOpacity={0.6}>
+                  <Text
+                     style={styles.button_link_about}
+                     onPress={() => alert('Condition de service')}
                   >
-                     <Text
-                        style={[styles.action, { color: Colors.white }]}
-                        onPress={() => alert('bye')}
-                     >
-                        Déconnexion
-                     </Text>
-                  </TouchableOpacity>
-               </View>
+                     Conditions de service
+                  </Text>
+               </TouchableOpacity>
+               <TouchableOpacity
+                  activeOpacity={0.6}
+                  onPress={() => alert('Open source licenses')}
+               >
+                  <Text
+                     style={[
+                        styles.button_link_about,
+                        { borderBottomWidth: 1 },
+                     ]}
+                  >
+                     Open Source Licences
+                  </Text>
+               </TouchableOpacity>
             </View>
          </View>
       </KeyboardAwareScrollView>
