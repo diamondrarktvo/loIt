@@ -121,6 +121,7 @@ export default function Listing({ navigation, route }) {
                            activeOpacity={0.8}
                            onPress={() => {
                               dispatch(addFavoris(item));
+                              alert('Ajouté au favoris.');
                            }}
                         >
                            <Icon

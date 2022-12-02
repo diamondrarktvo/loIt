@@ -28,14 +28,14 @@ export default function Favoris({ navigation, route }) {
             activeOpacity={0.9}
             onPress={() => {
                navigation.navigate(nameNav.detailPage, {
-                  titleScreen: `Article n° ${item.id}`,
+                  titleScreen: `Article n° ${item.Article.numer_Article}`,
                   articleToViewDetail: item,
                });
             }}
          >
             <View style={styles.view_render}>
                <Image
-                  source={item.poster_loi}
+                  source={item.photo ?? require('_images/book_loi.jpg')}
                   style={{ width: 130, height: 150, borderRadius: 16 }}
                />
                <View
@@ -51,14 +51,14 @@ export default function Favoris({ navigation, route }) {
                         Article n° {item.id}
                      </Text>
                      <Text style={{ fontSize: 12, marginBottom: 8 }}>
-                        Publié le : {item.date_publish}
+                        Publié le : {item.date_created?.substring(0, 10)}
                      </Text>
                   </View>
                   <Text
                      style={{ fontSize: 16, flex: 2, width: 210 }}
                      numberOfLines={4}
                   >
-                     {item.txt_description}{' '}
+                     {item.Article.contenu_Article_fr}{' '}
                   </Text>
                   <View
                      style={{
