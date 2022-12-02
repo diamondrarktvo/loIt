@@ -4,7 +4,7 @@ import { nameStackNavigation as nameNav } from '_utils';
 /*tab Navitation (top and bottom both)*/
 import BottomBarTabs from '_components/navigation/tabs/BottomBarTabs';
 /*screen normal |screen indépendant à afficher|*/
-import { Map, Login, Register } from '_pages';
+import { Map, Welcome } from '_pages';
 import { configStack } from './configStack';
 import { useSelector, useDispatch } from 'react-redux';
 import Listing from '_components/listing/ListingScreen';
@@ -14,9 +14,9 @@ import Detail from '_components/detail/DetailScreen';
 
 let Stack = createStackNavigator();
 export default function StackNavigation() {
-   const isSigned = useSelector((selector) => selector.user.profil.isConnected);
+   const isStarted = useSelector((selector) => selector.fonctionnality.started);
 
-   return isSigned ? (
+   return isStarted ? (
       <Stack.Navigator initialRouteName={nameNav.home}>
          <Stack.Group screenOptions={{ headerShown: false }}>
             <Stack.Screen name={nameNav.home} component={BottomBarTabs} />
@@ -67,8 +67,7 @@ export default function StackNavigation() {
    ) : (
       <Stack.Navigator initialRouteName={nameNav.login}>
          <Stack.Group screenOptions={configStack.screenOptionsForHeaderDisable}>
-            <Stack.Screen name={nameNav.login} component={Login} />
-            <Stack.Screen name={nameNav.register} component={Register} />
+            <Stack.Screen name={nameNav.welcome} component={Welcome} />
          </Stack.Group>
       </Stack.Navigator>
    );

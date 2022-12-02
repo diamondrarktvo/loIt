@@ -4,7 +4,7 @@ import { Colors } from '_theme/Colors';
 export default function HeaderGlobal({ navigation }) {
    return (
       <View style={styles.container}>
-         <Text style={styles.titre_salutation}>Salut, Dama!</Text>
+         <Text style={styles.titre_salutation}>Bienvenue !</Text>
          <TouchableOpacity activeOpacity={0.7}>
             <Text
                style={styles.icon_user}

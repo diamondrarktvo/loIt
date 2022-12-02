@@ -13,10 +13,14 @@ export const styles = StyleSheet.create({
       marginTop: 14,
       marginBottom: 6,
    },
-   view_instruction_for_vocal_search: {
+   view_for_filtre: {
       backgroundColor: Colors.whiteRose,
       padding: 20,
       marginVertical: 16,
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
    },
    view_for_input_search: {
       display: 'flex',

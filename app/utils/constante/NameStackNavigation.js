@@ -1,11 +1,10 @@
 export const nameStackNavigation = {
    home: 'Accueil',
-   login: 'Login',
+   welcome: 'Welcome',
    listPage: 'Liste',
    listCategorie: 'Categories',
    listType: 'Types',
    detailPage: 'Details',
-   register: 'Register',
    about: 'About',
    map: 'Map',
 };

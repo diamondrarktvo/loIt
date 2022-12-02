@@ -2,16 +2,14 @@ import { produce } from 'immer';
 import { changeStatusUser } from '../actions/action_creators';
 
 const initialState = {
-   profil: {
-      isConnected: false,
-   },
+   started: false,
 };
 
-export const userReducer = (state = initialState, action) => {
+export const functionnalityReducer = (state = initialState, action) => {
    switch (action.type) {
       case changeStatusUser().type:
          return produce(state, (draft) => {
-            draft.profil.isConnected = !draft.profil.isConnected;
+            draft.started = !draft.started;
          });
       default:
          return state;

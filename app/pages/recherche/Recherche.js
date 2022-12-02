@@ -153,11 +153,6 @@ export default function Recherche({ navigation }) {
                   <Text style={{ fontWeight: 'bold' }}>Voice search</Text>
                </TouchableOpacity>
             </View>
-            <View style={styles.view_instruction_for_vocal_search}>
-               <Text style={{ textAlign: 'center', fontWeight: 'bold' }}>
-                  Maintenez pour la recherche vocale
-               </Text>
-            </View>
 
             <View style={styles.view_for_input_search}>
                <TextInput
@@ -169,6 +164,26 @@ export default function Recherche({ navigation }) {
                   <Text style={styles.boutton_search}>
                      <Icon name={'search'} color={Colors.black} size={40} />
                   </Text>
+               </TouchableOpacity>
+            </View>
+
+            <View style={styles.view_for_filtre}>
+               <Text
+                  style={{
+                     textAlign: 'center',
+                     fontWeight: 'bold',
+                     fontSize: 18,
+                  }}
+               >
+                  Filtre
+               </Text>
+               <TouchableOpacity
+                  activeOpacity={0.8}
+                  onPress={() => {
+                     alert('filtrer');
+                  }}
+               >
+                  <Icon name={'filter-list'} color={Colors.violet} size={34} />
                </TouchableOpacity>
             </View>
          </View>
