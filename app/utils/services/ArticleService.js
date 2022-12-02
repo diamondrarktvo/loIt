@@ -1,7 +1,7 @@
 import { RouteAxios } from '_utils/services/urlAxios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-function getArticles() {
+function getArticlesFromServ() {
    return RouteAxios.get('/article')
       .then((response) => {
          return response.data;
@@ -11,7 +11,6 @@ function getArticles() {
       });
 }
 
-
 export const ArticleService = {
-   getArticles,
+   getArticlesFromServ,
 };

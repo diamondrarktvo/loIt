@@ -10,7 +10,7 @@ export const articleReducer = (state = initialState, action) => {
    switch (action.type) {
       case getAllArticles().type:
          return produce(state, (draft) => {
-            draft.articles = draft.articles;
+            draft.articles = action.payload;
          });
       case addFavoris().type:
          return produce(state, (draft) => {

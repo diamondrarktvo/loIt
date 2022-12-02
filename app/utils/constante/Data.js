@@ -1,4 +1,5 @@
-export const LastPublish = [
+//all array contain result of all fetch
+export const ArticleLastPublish = [
    {
       id: 1,
       txt_description:
@@ -25,7 +26,8 @@ export const LastPublish = [
       poster_loi: require('_images/book_loi.jpg'),
    },
 ];
-export const MockData = [
+
+export const AllArticles = [
    {
       id: 1,
       txt_description: 'Test de la loi eh finance',
@@ -70,7 +72,7 @@ export const MockData = [
    },
 ];
 
-export const Categorie = [
+export const Thematique = [
    {
       id: 1,
       txt_description: 'Finance',
@@ -155,5 +157,5 @@ export const Types = [
       categorie: 'Agricole',
       txt_description: 'Arreter',
       poster_catg: require('_images/book_loi.jpg'),
-   }
+   },
 ];

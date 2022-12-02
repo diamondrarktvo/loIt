@@ -13,7 +13,7 @@ import { nameStackNavigation as nameNav } from '_utils/constante/NameStackNaviga
 // import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { styles } from './styles';
 import { Icon } from '@rneui/themed';
-import { MockData } from '_utils';
+import { AllArticles } from '_utils';
 import { useDispatch } from 'react-redux';
 import HeaderGlobal from '_components/header/HeaderGlobal';
 import { Colors } from '_theme/Colors';
@@ -22,7 +22,7 @@ import { addFavoris } from '_utils/redux/actions/action_creators';
 export default function Listing({ navigation, route }) {
    //all data
    const dispatch = useDispatch();
-   const dataPerDomaine = MockData.filter(
+   const dataPerDomaine = AllArticles.filter(
       (item) => item.catg === route.params.categorie
    );
    const dataForFlatList = route.params.dataToList ?? dataPerDomaine;
@@ -34,14 +34,14 @@ export default function Listing({ navigation, route }) {
             activeOpacity={0.9}
             onPress={() => {
                navigation.navigate(nameNav.detailPage, {
-                  titleScreen: `Article n° ${item.id}`,
+                  titleScreen: `Article n° ${item.Article.numero_Article}`,
                   articleToViewDetail: item,
                });
             }}
          >
             <View style={styles.view_render}>
                <Image
-                  source={item.poster_loi}
+                  source={item.photo ?? require('_images/book_loi.jpg')}
                   style={{ width: 130, height: 150, borderRadius: 16 }}
                />
                <View
@@ -54,17 +54,17 @@ export default function Listing({ navigation, route }) {
                >
                   <View>
                      <Text style={{ fontWeight: 'bold', fontSize: 18 }}>
-                        Article n° {item.id}
+                        Article n° {item.Article.numero_Article}
                      </Text>
                      <Text style={{ fontSize: 12, marginBottom: 8 }}>
-                        Publié le : {item.date_publish}
+                        Publié le : {item.date_created}
                      </Text>
                   </View>
                   <Text
                      style={{ fontSize: 16, flex: 2, width: 210 }}
                      numberOfLines={4}
                   >
-                     {item.txt_description}{' '}
+                     {item.Article.contenu_Article_fr}{' '}
                   </Text>
                   <View
                      style={{

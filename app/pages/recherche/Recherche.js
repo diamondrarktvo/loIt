@@ -18,7 +18,7 @@ import { Icon } from '@rneui/themed';
 import { useDispatch } from 'react-redux';
 import HeaderGlobal from '_components/header/HeaderGlobal';
 import { Colors } from '_theme/Colors';
-import { MockData } from '_utils';
+import { AllArticles } from '_utils';
 import { addFavoris } from '_utils/redux/actions/action_creators';
 
 export default function Recherche({ navigation }) {
@@ -190,7 +190,7 @@ export default function Recherche({ navigation }) {
          <View style={styles.view_for_result}>
             <SafeAreaView style={styles.container_safe}>
                <FlatList
-                  data={MockData}
+                  data={AllArticles}
                   key={'_'}
                   keyExtractor={_idKeyExtractor}
                   renderItem={_renderItem}

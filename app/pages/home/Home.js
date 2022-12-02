@@ -13,14 +13,15 @@ import Carousel from 'react-native-snap-carousel';
 
 import HeaderGlobal from '_components/header/HeaderGlobal';
 import { nameStackNavigation as nameNav } from '_utils/constante/NameStackNavigation';
-import { MockData, LastPublish, Categorie, Types } from '_utils';
-import { Contexte } from '_utils';
+import { AllArticles, ArticleLastPublish, Thematique, Types } from '_utils';
 import { Colors } from '_theme/Colors';
 import { useState, useContext, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 export default function Home({ navigation }) {
    //all states
    const isCarousel = React.useRef(null);
+   const allArticles = useSelector((selector) => selector.article.articles);
 
    //all efects
 
@@ -28,10 +29,7 @@ export default function Home({ navigation }) {
    const _renderItem = ({ item }) => {
       return (
          <View key={item.id} style={styles.view_container_renderItem}>
-            <Image
-               style={styles.image_poster_style}
-               source={item.poster_loi} 
-            />
+            <Image style={styles.image_poster_style} source={item.poster_loi} />
             <Text
                style={{ marginVertical: 8, fontWeight: 'bold', fontSize: 17 }}
                numberOfLines={1}
@@ -97,7 +95,7 @@ export default function Home({ navigation }) {
                      onPress={() => {
                         navigation.navigate(nameNav.listCategorie, {
                            titleScreen: 'Tous les thèmes',
-                           dataToList: Categorie,
+                           dataToList: Thematique,
                         });
                      }}
                   />
@@ -160,7 +158,7 @@ export default function Home({ navigation }) {
                      onPress={() => {
                         navigation.navigate(nameNav.listPage, {
                            titleScreen: 'Tous les articles',
-                           dataToList: MockData,
+                           dataToList: allArticles,
                         });
                      }}
                   />
@@ -171,7 +169,7 @@ export default function Home({ navigation }) {
                         <Carousel
                            layout="default"
                            ref={isCarousel}
-                           data={LastPublish}
+                           data={ArticleLastPublish}
                            loop={true}
                            loopClonesPerSide={5} //Nombre de clones à ajouter de chaque côté des éléments d'origine. Lors d'un balayage très rapide
                            //fin des props spéficifique au section annonce
@@ -207,7 +205,7 @@ export default function Home({ navigation }) {
                      onPress={() => {
                         navigation.navigate(nameNav.listPage, {
                            titleScreen: 'Les derniers publiés',
-                           dataToList: LastPublish,
+                           dataToList: ArticleLastPublish,
                         });
                      }}
                   />
@@ -218,7 +216,7 @@ export default function Home({ navigation }) {
                         <Carousel
                            layout="default"
                            ref={isCarousel}
-                           data={LastPublish}
+                           data={ArticleLastPublish}
                            loop={true}
                            loopClonesPerSide={5} //Nombre de clones à ajouter de chaque côté des éléments d'origine. Lors d'un balayage très rapide
                            //fin des props spéficifique au section annonce

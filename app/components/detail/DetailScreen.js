@@ -12,7 +12,7 @@ import {
    Dimensions,
 } from 'react-native';
 import * as Speech from 'expo-speech';
-import React, { useCallback, useEffect, useState } from 'react';
+import React from 'react';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { styles } from './styles';
 import { Icon } from '@rneui/themed';
@@ -55,7 +55,7 @@ export default function Detail({ navigation, route }) {
                         color: Colors.white,
                      }}
                   >
-                     Article n° {oneArticle.id}
+                     Article n° {oneArticle.Article.numero_Article}
                   </Text>
                   <Text
                      style={{
@@ -64,7 +64,7 @@ export default function Detail({ navigation, route }) {
                         color: Colors.white,
                      }}
                   >
-                     Publié le : {oneArticle.date_publish}
+                     Publié le : {oneArticle.date_created}
                   </Text>
                </View>
                <View style={styles.description_section}>
@@ -93,7 +93,6 @@ export default function Detail({ navigation, route }) {
                   </Text>
                   <ScrollView
                      style={{
-                        paddingVertical: 8,
                         paddingRight: 4,
                      }}
                   >
@@ -104,7 +103,7 @@ export default function Detail({ navigation, route }) {
                            textAlign: 'left',
                         }}
                      >
-                        {oneArticle.txt_description}
+                        {oneArticle.Article.contenu_Article_fr}
                      </Text>
                   </ScrollView>
                   <View style={styles.all_button_in_detail_screen}>

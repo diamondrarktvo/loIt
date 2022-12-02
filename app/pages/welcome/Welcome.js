@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { Text, View, Image, TouchableOpacity } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import styles from './styles';
@@ -6,12 +6,27 @@ import { Colors } from '_theme/Colors';
 import Lottie from 'lottie-react-native';
 import { Icon } from '@rneui/base';
 import { useDispatch } from 'react-redux';
-import { getStarted } from '_utils/redux/actions/action_creators';
+import {
+   getStarted,
+   getAllArticles,
+} from '_utils/redux/actions/action_creators';
+import { ArticleService } from '_utils';
 
 export default function Login({ navigation }) {
    //all datas
    const animation = useRef(null);
    const dispatch = useDispatch();
+
+   //all fetch || functions
+   const getArticles = async () => {
+      let results = await ArticleService.getArticlesFromServ();
+      dispatch(getAllArticles(results));
+   };
+
+   //all effects
+   useEffect(() => {
+      getArticles();
+   }, []);
 
    return (
       <View style={styles.view_container_welcome}>
