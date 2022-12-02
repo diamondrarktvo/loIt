@@ -34,7 +34,6 @@ export default function Detail({ navigation, route }) {
          Speech.speak(txt_to_say);
       }
    };
-   console.log('pla : ', isSpeakPlay);
 
    return (
       <View style={styles.view_container}>

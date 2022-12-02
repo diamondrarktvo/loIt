@@ -30,18 +30,36 @@ export default function Home({ navigation }) {
    //all components
    const _renderItem = ({ item }) => {
       return (
-         <View key={item.id} style={styles.view_container_renderItem}>
-            <Image style={styles.image_poster_style} source={item.poster_loi} />
-            <Text
-               style={{ marginVertical: 8, fontWeight: 'bold', fontSize: 17 }}
-               numberOfLines={1}
-            >
-               {item.txt_description}
-            </Text>
-            <Text style={{ fontSize: 12 }}>
-               Publié le :{item.date_publish}{' '}
-            </Text>
-         </View>
+         <TouchableOpacity
+            activeOpacity={0.8}
+            onPress={() => {
+               navigation.navigate(nameNav.detailPage, {
+                  titleScreen: `Article n°${item.Article.numero_Article}`,
+                  articleToViewDetail: item,
+               });
+            }}
+         >
+            <View key={item.id} style={styles.view_container_renderItem}>
+               <Image
+                  style={styles.image_poster_style}
+                  source={item.photo ?? require('_images/book_loi.jpg')}
+               />
+               <Text
+                  style={{
+                     marginVertical: 8,
+                     paddingRight: 8,
+                     fontWeight: 'bold',
+                     fontSize: 17,
+                  }}
+                  numberOfLines={1}
+               >
+                  {item.Article?.contenu_Article_fr}
+               </Text>
+               <Text style={{ fontSize: 12 }}>
+                  Publié le :{item.date_created?.substring(0, 10)}{' '}
+               </Text>
+            </View>
+         </TouchableOpacity>
       );
    };
 
@@ -109,34 +127,78 @@ export default function Home({ navigation }) {
                      justifyContent: 'space-between',
                   }}
                >
-                  <View style={styles.one_item_categorie}>
-                     <Image
-                        style={styles.image_for_categorie}
-                        source={require('_images/book_loi.jpg')}
-                     />
-                     <Text style={{ color: Colors.secondary }}>Finance</Text>
-                  </View>
-                  <View style={styles.one_item_categorie}>
-                     <Image
-                        style={styles.image_for_categorie}
-                        source={require('_images/book_loi.jpg')}
-                     />
-                     <Text style={{ color: Colors.secondary }}>Finance</Text>
-                  </View>
-                  <View style={styles.one_item_categorie}>
-                     <Image
-                        style={styles.image_for_categorie}
-                        source={require('_images/book_loi.jpg')}
-                     />
-                     <Text style={{ color: Colors.secondary }}>Finance</Text>
-                  </View>
-                  <View style={styles.one_item_categorie}>
-                     <Image
-                        style={styles.image_for_categorie}
-                        source={require('_images/book_loi.jpg')}
-                     />
-                     <Text style={{ color: Colors.secondary }}>Finance</Text>
-                  </View>
+                  <TouchableOpacity
+                     onPress={() => {
+                        navigation.navigate(nameNav.listType, {
+                           titleScreen: 'Faune',
+                           domaine: 'Faune',
+                        });
+                     }}
+                  >
+                     <View style={styles.one_item_categorie}>
+                        <Image
+                           style={styles.image_for_categorie}
+                           source={require('_images/book_loi.jpg')}
+                        />
+                        <Text style={{ color: Colors.secondary }}>Faune</Text>
+                     </View>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity
+                     onPress={() => {
+                        navigation.navigate(nameNav.listType, {
+                           titleScreen: 'Répression ',
+                           domaine: 'Répression et principes',
+                        });
+                     }}
+                  >
+                     <View style={styles.one_item_categorie}>
+                        <Image
+                           style={styles.image_for_categorie}
+                           source={require('_images/book_loi.jpg')}
+                        />
+                        <Text style={{ color: Colors.secondary }}>
+                           Répress.
+                        </Text>
+                     </View>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity
+                     onPress={() => {
+                        navigation.navigate(nameNav.listType, {
+                           titleScreen: 'Flore',
+                           domaine: 'Flore',
+                        });
+                     }}
+                  >
+                     <View style={styles.one_item_categorie}>
+                        <Image
+                           style={styles.image_for_categorie}
+                           source={require('_images/book_loi.jpg')}
+                        />
+                        <Text style={{ color: Colors.secondary }}>Flore</Text>
+                     </View>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity
+                     onPress={() => {
+                        navigation.navigate(nameNav.listType, {
+                           titleScreen: 'Corruption ',
+                           domaine:
+                              "Corruption et Engagement d'un représentant du gouvernement",
+                        });
+                     }}
+                  >
+                     <View style={styles.one_item_categorie}>
+                        <Image
+                           style={styles.image_for_categorie}
+                           source={require('_images/book_loi.jpg')}
+                        />
+                        <Text style={{ color: Colors.secondary }}>
+                           Corrupt.
+                        </Text>
+                     </View>
+                  </TouchableOpacity>
                </View>
             </View>
 
@@ -171,7 +233,7 @@ export default function Home({ navigation }) {
                         <Carousel
                            layout="default"
                            ref={isCarousel}
-                           data={ArticleLastPublish}
+                           data={allArticles}
                            loop={true}
                            loopClonesPerSide={5} //Nombre de clones à ajouter de chaque côté des éléments d'origine. Lors d'un balayage très rapide
                            //fin des props spéficifique au section annonce

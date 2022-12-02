@@ -58,7 +58,7 @@ export default function Listing({ navigation, route }) {
                         Article n° {item.Article.numero_Article}
                      </Text>
                      <Text style={{ fontSize: 12, marginBottom: 8 }}>
-                        Publié le : {item.date_created}
+                        Publié le : {item.date_created?.substring(0, 10)}
                      </Text>
                   </View>
                   <Text
