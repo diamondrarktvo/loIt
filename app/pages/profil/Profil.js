@@ -1,13 +1,14 @@
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { Colors } from '_theme/Colors';
-import { useContext } from 'react';
+import { useDispatch } from 'react-redux';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { styles } from './styles';
 import { Icon } from '@rneui/themed';
 import { Contexte } from '_utils';
+import { changeStatusUser } from '_utils/redux/actions/action_creators';
 
 export default function Profil({ navigation }) {
-   const { isSigned, setIsSigned } = useContext(Contexte);
+   const dispatch = useDispatch();
 
    return (
       <KeyboardAwareScrollView style={{ backgroundColor: Colors.background }}>
@@ -73,7 +74,7 @@ export default function Profil({ navigation }) {
                   >
                      <Text
                         style={[styles.action, { color: Colors.white }]}
-                        onPress={() => setIsSigned(false)}
+                        onPress={() => dispatch(changeStatusUser())}
                      >
                         Déconnexion
                      </Text>
