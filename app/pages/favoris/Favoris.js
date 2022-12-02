@@ -134,52 +134,61 @@ export default function Favoris({ navigation, route }) {
       item?.id == null ? index.toString() : item.id.toString();
 
    return (
-      <KeyboardAwareScrollView style={{ backgroundColor: Colors.background }}>
-         <View style={styles.view_container}>
-            <SafeAreaView>
-               <View style={styles.head_content}>
-                  <HeaderGlobal navigation={navigation} />
-               </View>
-
-               <View style={styles.landing_screen}>
-                  <Text style={styles.text_landing_screen}>Vos Favoris</Text>
-                  <View style={styles.content_in_landing_screen}>
-                     <Image
-                        style={styles.icon_in_content_landing}
-                        source={require('_images/book_loi.jpg')}
-                     />
-                     <View
-                        style={{
-                           display: 'flex',
-                           flexDirection: 'column',
-                           alignItems: 'flex-start',
-                        }}
-                     >
-                        <Text style={{ fontSize: 16, fontWeight: 'bold' }}>
-                           Favoris
-                        </Text>
-                        <Text>Regardez-les encore</Text>
+      <View style={styles.view_container}>
+         <SafeAreaView>
+            <FlatList
+               ListHeaderComponent={
+                  <View>
+                     <View style={styles.head_content}>
+                        <HeaderGlobal navigation={navigation} />
                      </View>
-                     <Icon name={'autorenew'} color={Colors.white} size={38} />
-                  </View>
-               </View>
 
-               <FlatList
-                  data={dataForFlatList}
-                  key={'_'}
-                  keyExtractor={_idKeyExtractor}
-                  renderItem={_renderItem}
-                  removeClippedSubviews={true}
-                  getItemLayout={(data, index) => ({
-                     length: data.length,
-                     offset: data.length * index,
-                     index,
-                  })}
-                  initialNumToRender={5}
-                  maxToRenderPerBatch={3}
-               />
-            </SafeAreaView>
-         </View>
-      </KeyboardAwareScrollView>
+                     <View style={styles.landing_screen}>
+                        <Text style={styles.text_landing_screen}>
+                           Vos Favoris
+                        </Text>
+                        <View style={styles.content_in_landing_screen}>
+                           <Image
+                              style={styles.icon_in_content_landing}
+                              source={require('_images/book_loi.jpg')}
+                           />
+                           <View
+                              style={{
+                                 display: 'flex',
+                                 flexDirection: 'column',
+                                 alignItems: 'flex-start',
+                              }}
+                           >
+                              <Text
+                                 style={{ fontSize: 16, fontWeight: 'bold' }}
+                              >
+                                 Favoris
+                              </Text>
+                              <Text>Regardez-les encore</Text>
+                           </View>
+                           <Icon
+                              name={'autorenew'}
+                              color={Colors.white}
+                              size={38}
+                           />
+                        </View>
+                     </View>
+                  </View>
+               }
+               data={dataForFlatList}
+               key={'_'}
+               keyExtractor={_idKeyExtractor}
+               renderItem={_renderItem}
+               removeClippedSubviews={true}
+               getItemLayout={(data, index) => ({
+                  length: data.length,
+                  offset: data.length * index,
+                  index,
+               })}
+               initialNumToRender={5}
+               maxToRenderPerBatch={3}
+            />
+         </SafeAreaView>
+      </View>
    );
 }
