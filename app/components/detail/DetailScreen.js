@@ -12,7 +12,7 @@ import {
    Dimensions,
 } from 'react-native';
 import * as Speech from 'expo-speech';
-import React from 'react';
+import React, { useState } from 'react';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { styles } from './styles';
 import { Icon } from '@rneui/themed';
@@ -23,12 +23,19 @@ import { addFavoris } from '_utils/redux/actions/action_creators';
 
 export default function Detail({ navigation, route }) {
    const dispatch = useDispatch();
+   const [isSpeakPlay, setIsSpeakPlay] = useState(false);
    const oneArticle = route.params.articleToViewDetail;
 
    /*function to speach article*/
-   const speak = (txt_to_say) => {
-      Speech.speak(txt_to_say);
+   const playPauseSpeak = (txt_to_say) => {
+      if (isSpeakPlay) {
+         Speech.stop();
+      } else {
+         Speech.speak(txt_to_say);
+      }
    };
+   console.log('pla : ', isSpeakPlay);
+
    return (
       <View style={styles.view_container}>
          <StatusBar
@@ -121,12 +128,22 @@ export default function Detail({ navigation, route }) {
                         </Text>
                      </TouchableOpacity>
                      <TouchableOpacity
-                        onPress={() => speak(oneArticle.txt_description)}
+                        onPress={() => {
+                           setIsSpeakPlay(!isSpeakPlay);
+                           playPauseSpeak(
+                              oneArticle.Article.contenu_Article_fr.substring(
+                                 0,
+                                 4000
+                              )
+                           );
+                        }}
                      >
                         <Text style={[styles.button_in_detail]}>
                            {' '}
                            <Icon
-                              name={'play-circle-outline'}
+                              name={
+                                 isSpeakPlay ? 'stop' : 'play-circle-outline'
+                              }
                               size={34}
                               color={Colors.violet}
                            />{' '}
