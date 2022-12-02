@@ -1,11 +1,10 @@
 import { createStackNavigator } from '@react-navigation/stack';
 //name util for stack navigation
 import { nameStackNavigation as nameNav } from '_utils';
-import { useState, useContext } from 'react';
 /*tab Navitation (top and bottom both)*/
 import BottomBarTabs from '_components/navigation/tabs/BottomBarTabs';
 /*screen normal |screen indépendant à afficher|*/
-import { Profil, Map, Login, Register } from '_pages';
+import { Map, Login, Register } from '_pages';
 import { configStack } from './configStack';
 import { useSelector, useDispatch } from 'react-redux';
 import Listing from '_components/listing/ListingScreen';

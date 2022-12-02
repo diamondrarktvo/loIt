@@ -6,26 +6,24 @@ import {
    Image,
    Modal,
    SafeAreaView,
+   Dimensions,
+   TextInput,
    TouchableOpacity,
 } from 'react-native';
 import React, { useCallback, useEffect, useState } from 'react';
-import { nameStackNavigation as nameNav } from '_utils/constante/NameStackNavigation';
-// import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { styles } from './styles';
+import { nameStackNavigation as nameNav } from '_utils/constante/NameStackNavigation';
 import { Icon } from '@rneui/themed';
-import { MockData } from '_utils';
 import { useDispatch } from 'react-redux';
 import HeaderGlobal from '_components/header/HeaderGlobal';
 import { Colors } from '_theme/Colors';
+import { MockData } from '_utils';
 import { addFavoris } from '_utils/redux/actions/action_creators';
 
-export default function Listing({ navigation, route }) {
+export default function Recherche({ navigation }) {
    //all data
    const dispatch = useDispatch();
-   const dataPerDomaine = MockData.filter(
-      (item) => item.catg === route.params.categorie
-   );
-   const dataForFlatList = route.params.dataToList ?? dataPerDomaine;
 
    //all logics
    const _renderItem = useCallback(({ item }) => {
@@ -100,7 +98,8 @@ export default function Listing({ navigation, route }) {
                         style={{
                            display: 'flex',
                            flexDirection: 'row',
-                           width: 108,
+                           width:
+                              Dimensions.get('window').height < 700 ? 90 : 108,
                            justifyContent: 'space-evenly',
                         }}
                      >
@@ -140,23 +139,57 @@ export default function Listing({ navigation, route }) {
       item?.id == null ? index.toString() : item.id.toString();
 
    return (
-      <View style={styles.view_container}>
-         <SafeAreaView style={styles.container_safe}>
-            <FlatList
-               data={dataForFlatList}
-               key={'_'}
-               keyExtractor={_idKeyExtractor}
-               renderItem={_renderItem}
-               removeClippedSubviews={true}
-               getItemLayout={(data, index) => ({
-                  length: data.length,
-                  offset: data.length * index,
-                  index,
-               })}
-               initialNumToRender={5}
-               maxToRenderPerBatch={3}
-            />
-         </SafeAreaView>
+      <View style={styles.view_container_search}>
+         <View style={styles.head_content}>
+            <View
+               style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+               }}
+            >
+               <TouchableOpacity activeOpacity={0.7}>
+                  <Icon name={'mic'} color={Colors.violet} size={30} />
+                  <Text style={{ fontWeight: 'bold' }}>Voice search</Text>
+               </TouchableOpacity>
+            </View>
+            <View style={styles.view_instruction_for_vocal_search}>
+               <Text style={{ textAlign: 'center', fontWeight: 'bold' }}>
+                  Maintenez pour la recherche vocale
+               </Text>
+            </View>
+
+            <View style={styles.view_for_input_search}>
+               <TextInput
+                  style={styles.input}
+                  keyboardType="email-address"
+                  placeholder="Entrer le mot de recherche ..."
+               />
+               <TouchableOpacity activeOpacity={0.8}>
+                  <Text style={styles.boutton_search}>
+                     <Icon name={'search'} color={Colors.black} size={40} />
+                  </Text>
+               </TouchableOpacity>
+            </View>
+         </View>
+         <View style={styles.view_for_result}>
+            <SafeAreaView style={styles.container_safe}>
+               <FlatList
+                  data={MockData}
+                  key={'_'}
+                  keyExtractor={_idKeyExtractor}
+                  renderItem={_renderItem}
+                  removeClippedSubviews={true}
+                  getItemLayout={(data, index) => ({
+                     length: data.length,
+                     offset: data.length * index,
+                     index,
+                  })}
+                  initialNumToRender={5}
+                  maxToRenderPerBatch={3}
+               />
+            </SafeAreaView>
+         </View>
       </View>
    );
 }

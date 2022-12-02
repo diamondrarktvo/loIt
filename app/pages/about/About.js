@@ -7,7 +7,7 @@ import { Icon } from '@rneui/themed';
 import { Contexte } from '_utils';
 import { changeStatusUser } from '_utils/redux/actions/action_creators';
 
-export default function Profil({ navigation }) {
+export default function About({ navigation }) {
    const dispatch = useDispatch();
 
    return (

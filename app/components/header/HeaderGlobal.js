@@ -9,7 +9,7 @@ export default function HeaderGlobal({ navigation }) {
             <Text
                style={styles.icon_user}
                onPress={() => {
-                  navigation.navigate('Profil');
+                  navigation.navigate('About');
                }}
             >
                D
