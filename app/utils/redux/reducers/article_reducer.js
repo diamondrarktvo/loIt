@@ -14,7 +14,16 @@ export const articleReducer = (state = initialState, action) => {
          });
       case addFavoris().type:
          return produce(state, (draft) => {
-            draft.favoris.push(action.payload);
+            if (
+               state.favoris.filter((favori) => favori.id === action.payload.id)
+                  .length > 0
+            ) {
+               draft.favoris = draft.favoris.filter(
+                  (favori) => favori.id !== action.payload.id
+               );
+            } else {
+               draft.favoris.push(action.payload);
+            }
          });
       default:
          return state;

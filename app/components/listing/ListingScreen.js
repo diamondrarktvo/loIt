@@ -14,11 +14,13 @@ import { nameStackNavigation as nameNav } from '_utils/constante/NameStackNaviga
 import { styles } from './styles';
 import { Icon } from '@rneui/themed';
 import { MockData } from '_utils';
-
+import { useDispatch } from 'react-redux';
 import HeaderGlobal from '_components/header/HeaderGlobal';
 import { Colors } from '_theme/Colors';
+import { addFavoris } from '_utils/redux/actions/action_creators';
 
 export default function Listing({ navigation, route }) {
+   const dispatch = useDispatch();
    const dataPerDomaine = MockData.filter(
       (item) => item.catg === route.params.categorie
    );
@@ -115,7 +117,7 @@ export default function Listing({ navigation, route }) {
                         <TouchableOpacity
                            activeOpacity={0.8}
                            onPress={() => {
-                              alert("J'adore");
+                              dispatch(addFavoris(item));
                            }}
                         >
                            <Icon

@@ -10,17 +10,17 @@ import {
 } from 'react-native';
 import React, { useCallback, useEffect, useState } from 'react';
 import { nameStackNavigation as nameNav } from '_utils/constante/NameStackNavigation';
-// import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { styles } from './styles';
 import { Icon } from '@rneui/themed';
-import { MockData } from '_utils';
-
+import { useSelector, useDispatch } from 'react-redux';
 import HeaderGlobal from '_components/header/HeaderGlobal';
 import { Colors } from '_theme/Colors';
+import { addFavoris } from '_utils/redux/actions/action_creators';
 
 export default function Favoris({ navigation, route }) {
-   const dataForFlatList = route.params.dataToList;
-   console.log(dataForFlatList);
+   const dataForFlatList = useSelector((selector) => selector.article.favoris);
+   const dispatch = useDispatch();
    //all logics
    const _renderItem = useCallback(({ item }) => {
       return (
@@ -113,7 +113,7 @@ export default function Favoris({ navigation, route }) {
                         <TouchableOpacity
                            activeOpacity={0.8}
                            onPress={() => {
-                              alert("J'adore");
+                              dispatch(addFavoris(item));
                            }}
                         >
                            <Icon
@@ -134,23 +134,52 @@ export default function Favoris({ navigation, route }) {
       item?.id == null ? index.toString() : item.id.toString();
 
    return (
-      <View style={styles.view_container}>
-         <SafeAreaView style={styles.container_safe}>
-            <FlatList
-               data={dataForFlatList}
-               key={'_'}
-               keyExtractor={_idKeyExtractor}
-               renderItem={_renderItem}
-               removeClippedSubviews={true}
-               getItemLayout={(data, index) => ({
-                  length: data.length,
-                  offset: data.length * index,
-                  index,
-               })}
-               initialNumToRender={5}
-               maxToRenderPerBatch={3}
-            />
-         </SafeAreaView>
-      </View>
+      <KeyboardAwareScrollView style={{ backgroundColor: Colors.background }}>
+         <View style={styles.view_container}>
+            <SafeAreaView>
+               <View style={styles.head_content}>
+                  <HeaderGlobal navigation={navigation} />
+               </View>
+
+               <View style={styles.landing_screen}>
+                  <Text style={styles.text_landing_screen}>Vos Favoris</Text>
+                  <View style={styles.content_in_landing_screen}>
+                     <Image
+                        style={styles.icon_in_content_landing}
+                        source={require('_images/book_loi.jpg')}
+                     />
+                     <View
+                        style={{
+                           display: 'flex',
+                           flexDirection: 'column',
+                           alignItems: 'flex-start',
+                        }}
+                     >
+                        <Text style={{ fontSize: 16, fontWeight: 'bold' }}>
+                           Favoris
+                        </Text>
+                        <Text>Regardez-les encore</Text>
+                     </View>
+                     <Icon name={'autorenew'} color={Colors.white} size={38} />
+                  </View>
+               </View>
+
+               <FlatList
+                  data={dataForFlatList}
+                  key={'_'}
+                  keyExtractor={_idKeyExtractor}
+                  renderItem={_renderItem}
+                  removeClippedSubviews={true}
+                  getItemLayout={(data, index) => ({
+                     length: data.length,
+                     offset: data.length * index,
+                     index,
+                  })}
+                  initialNumToRender={5}
+                  maxToRenderPerBatch={3}
+               />
+            </SafeAreaView>
+         </View>
+      </KeyboardAwareScrollView>
    );
 }

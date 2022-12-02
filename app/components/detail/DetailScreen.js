@@ -17,13 +17,16 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { styles } from './styles';
 import { Icon } from '@rneui/themed';
 import bgImage from '_images/bg_loi.jpg';
-
+import { useDispatch } from 'react-redux';
 import { Colors } from '_theme/Colors';
+import { addFavoris } from '_utils/redux/actions/action_creators';
 
 export default function Detail({ navigation, route }) {
+   const dispatch = useDispatch();
    const oneArticle = route.params.articleToViewDetail;
    console.log(oneArticle);
 
+   /*function to speach article*/
    const speak = (txt_to_say) => {
       Speech.speak(txt_to_say);
    };
@@ -67,7 +70,7 @@ export default function Detail({ navigation, route }) {
                <View style={styles.description_section}>
                   <TouchableOpacity
                      onPress={() => {
-                        alert('Ajouté aux favoris');
+                        dispatch(addFavoris(oneArticle));
                      }}
                   >
                      <Text style={styles.boutton_add_favorite}>
