@@ -45,7 +45,7 @@ export default function HeaderGlobal({ navigation }) {
                   }}
                >
                   <MenuOption onSelect={() => alert(`Save`)} text="Save" />
-                  <MenuOption onSelect={() => alert(`Delete`)}>
+                  <MenuOption onSelect={() => alert(`Français`)}>
                      <MenuOptionCustom text="Français" icone="flag" />
                   </MenuOption>
                   <MenuOption
