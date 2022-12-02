@@ -11,6 +11,28 @@ function getArticlesFromServ() {
       });
 }
 
+function getThematiqueFromServ() {
+   return RouteAxios.get('/thematique')
+      .then((response) => {
+         return response.data;
+      })
+      .catch((error) => {
+         return error.message;
+      });
+}
+
+function getTypeFromServ() {
+   return RouteAxios.get('/type')
+      .then((response) => {
+         return response.data;
+      })
+      .catch((error) => {
+         return error.message;
+      });
+}
+
 export const ArticleService = {
    getArticlesFromServ,
+   getThematiqueFromServ,
+   getTypeFromServ,
 };

@@ -18,7 +18,7 @@ export const styles = StyleSheet.create({
       width: widthDevice < 370 ? 155 : 170,
    },
    poster_catg: {
-      height: 90,
+      height: 140,
       width: widthDevice < 370 ? 155 : 170,
       borderRadius: 20,
    },
@@ -35,6 +35,6 @@ export const styles = StyleSheet.create({
       fontSize: 20,
       flexWrap: 'wrap',
       textAlign: 'center',
-      top: 28,
+      top: 29,
    },
 });

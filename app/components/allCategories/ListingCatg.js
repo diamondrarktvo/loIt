@@ -26,17 +26,20 @@ export default function ListingCatg({ navigation, route }) {
             <TouchableOpacity
                onPress={() => {
                   navigation.navigate(nameNav.listType, {
-                     titleScreen: `${item.txt_description}`,
-                     domaine: item.txt_description,
+                     titleScreen: `${item.nom.substring(0, 12)}`,
+                     domaine: item.nom,
                   });
                }}
             >
-               <Image style={styles.poster_catg} source={item.poster_catg} />
+               <Image
+                  style={styles.poster_catg}
+                  source={require('_images/book_loi.jpg')}
+               />
                <View
                   style={[StyleSheet.absoluteFillObject, styles.maskImageCatg]}
                ></View>
                <Text style={[StyleSheet.absoluteFillObject, styles.nom_catg]}>
-                  {item.txt_description}
+                  {item.nom}
                </Text>
             </TouchableOpacity>
          </View>

@@ -4,43 +4,42 @@ import {
    StyleSheet,
    FlatList,
    Image,
-   Modal,
    SafeAreaView,
    Dimensions,
    TouchableOpacity,
 } from 'react-native';
 import React, { useCallback, useEffect, useState } from 'react';
 import { nameStackNavigation as nameNav } from '_utils/constante/NameStackNavigation';
-// import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { styles } from './styles';
 import { Icon } from '@rneui/themed';
+import { useSelector } from 'react-redux';
 
-import HeaderGlobal from '_components/header/HeaderGlobal';
 import { Colors } from '_theme/Colors';
 import { Types } from '_utils';
 
 export default function ListingTypes({ navigation, route }) {
-   const allCatgByTypes = Types.filter(
-      (item) => item.categorie === route.params.domaine
-   );
-   const dataForFlatList = allCatgByTypes;
+   const dataForFlatList = useSelector((selector) => selector.article.types);
    const _renderItem = ({ item }) => {
       return (
          <View style={styles.view_render} key={item.id}>
             <TouchableOpacity
                onPress={() => {
                   navigation.navigate(nameNav.listPage, {
-                     titleScreen: `${item.txt_description}`,
-                     categorie: item.categorie,
+                     titleScreen: `${item.nom}`,
+                     type: item.nom,
+                     theme: route.params.domaine,
                   });
                }}
             >
-               <Image style={styles.poster_catg} source={item.poster_catg} />
+               <Image
+                  style={styles.poster_catg}
+                  source={require('_images/book_loi.jpg')}
+               />
                <View
                   style={[StyleSheet.absoluteFillObject, styles.maskImageCatg]}
                ></View>
                <Text style={[StyleSheet.absoluteFillObject, styles.nom_catg]}>
-                  {item.txt_description}
+                  {item.nom}
                </Text>
             </TouchableOpacity>
          </View>

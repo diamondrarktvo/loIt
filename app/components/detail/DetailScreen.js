@@ -24,7 +24,6 @@ import { addFavoris } from '_utils/redux/actions/action_creators';
 export default function Detail({ navigation, route }) {
    const dispatch = useDispatch();
    const oneArticle = route.params.articleToViewDetail;
-   console.log(oneArticle);
 
    /*function to speach article*/
    const speak = (txt_to_say) => {

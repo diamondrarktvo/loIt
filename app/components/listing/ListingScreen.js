@@ -13,19 +13,20 @@ import { nameStackNavigation as nameNav } from '_utils/constante/NameStackNaviga
 // import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { styles } from './styles';
 import { Icon } from '@rneui/themed';
-import { AllArticles } from '_utils';
-import { useDispatch } from 'react-redux';
-import HeaderGlobal from '_components/header/HeaderGlobal';
+import { useDispatch, useSelector } from 'react-redux';
 import { Colors } from '_theme/Colors';
 import { addFavoris } from '_utils/redux/actions/action_creators';
 
 export default function Listing({ navigation, route }) {
    //all data
    const dispatch = useDispatch();
-   const dataPerDomaine = AllArticles.filter(
-      (item) => item.catg === route.params.categorie
+   let allArticle = useSelector((selector) => selector.article.articles);
+   const dataPerThemeAndType = allArticle.filter(
+      (article) =>
+         article.Thematique.nom_Thematique_fr === route.params.theme &&
+         article.Type.nom_Type_fr === route.params.type
    );
-   const dataForFlatList = route.params.dataToList ?? dataPerDomaine;
+   const dataForFlatList = route.params.dataToList ?? dataPerThemeAndType;
 
    //all logics
    const _renderItem = useCallback(({ item }) => {

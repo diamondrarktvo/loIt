@@ -13,7 +13,7 @@ import Carousel from 'react-native-snap-carousel';
 
 import HeaderGlobal from '_components/header/HeaderGlobal';
 import { nameStackNavigation as nameNav } from '_utils/constante/NameStackNavigation';
-import { AllArticles, ArticleLastPublish, Thematique, Types } from '_utils';
+import { ArticleLastPublish, Thematique } from '_utils';
 import { Colors } from '_theme/Colors';
 import { useState, useContext, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -22,7 +22,9 @@ export default function Home({ navigation }) {
    //all states
    const isCarousel = React.useRef(null);
    const allArticles = useSelector((selector) => selector.article.articles);
-
+   const allThematiques = useSelector(
+      (selector) => selector.article.thematiques
+   );
    //all efects
 
    //all components
@@ -95,7 +97,7 @@ export default function Home({ navigation }) {
                      onPress={() => {
                         navigation.navigate(nameNav.listCategorie, {
                            titleScreen: 'Tous les thèmes',
-                           dataToList: Thematique,
+                           dataToList: allThematiques,
                         });
                      }}
                   />

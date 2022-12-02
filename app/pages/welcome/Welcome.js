@@ -9,6 +9,8 @@ import { useDispatch } from 'react-redux';
 import {
    getStarted,
    getAllArticles,
+   getAllThematiques,
+   getAllTypes,
 } from '_utils/redux/actions/action_creators';
 import { ArticleService } from '_utils';
 
@@ -23,9 +25,21 @@ export default function Login({ navigation }) {
       dispatch(getAllArticles(results));
    };
 
+   const getThematiques = async () => {
+      let results = await ArticleService.getThematiqueFromServ();
+      dispatch(getAllThematiques(results));
+   };
+
+   const getTypes = async () => {
+      let results = await ArticleService.getTypeFromServ();
+      dispatch(getAllTypes(results));
+   };
+
    //all effects
    useEffect(() => {
       getArticles();
+      getThematiques();
+      getTypes();
    }, []);
 
    return (
