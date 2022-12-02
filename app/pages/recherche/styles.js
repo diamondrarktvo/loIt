@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
    view_container_search: {
       flex: 1,
       marginTop: 30,
-      paddingBottom: 300,
+      paddingBottom: 320,
       paddingHorizontal: 15,
       backgroundColor: Colors.baackground,
    },
