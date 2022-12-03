@@ -1,13 +1,15 @@
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { Colors } from '_theme/Colors';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { styles } from './styles';
-import { Icon } from '@rneui/themed';
-import { Contexte } from '_utils';
 
 export default function About({ navigation }) {
    const dispatch = useDispatch();
+
+   const langueActual = useSelector(
+      (selector) => selector.fonctionnality.langue
+   );
 
    return (
       <KeyboardAwareScrollView style={{ backgroundColor: Colors.background }}>
@@ -16,7 +18,7 @@ export default function About({ navigation }) {
                <Text
                   style={{ fontSize: 32, fontWeight: 'bold', marginBottom: 8 }}
                >
-                  A propos
+                  {langueActual === 'fr' ? 'A propos' : 'Mombamomba'}
                </Text>
                <Image
                   style={styles.banniere_image}
@@ -32,29 +34,53 @@ export default function About({ navigation }) {
                >
                   LoIT
                </Text>
-               <Text>Version 1.0.0</Text>
+               <Text>
+                  {langueActual === 'fr' ? 'Version' : 'Fanovana'} 1.0.0
+               </Text>
             </View>
 
             <View style={styles.view_content_about}>
                <TouchableOpacity
                   activeOpacity={0.6}
-                  onPress={() => alert('Politique de confidentialité')}
+                  onPress={() =>
+                     alert(
+                        langueActual === 'fr'
+                           ? 'Politique de confidentialité'
+                           : "Politika fiarovana fiainan'olona"
+                     )
+                  }
                >
                   <Text style={styles.button_link_about}>
-                     Politique de confidentialité
+                     {langueActual === 'fr'
+                        ? 'Politique de confidentialité'
+                        : "Politika fiarovana fiainan'olona"}
                   </Text>
                </TouchableOpacity>
                <TouchableOpacity activeOpacity={0.6}>
                   <Text
                      style={styles.button_link_about}
-                     onPress={() => alert('Condition de service')}
+                     onPress={() =>
+                        alert(
+                           langueActual === 'fr'
+                              ? "Conditions d'utilisation"
+                              : "Fepetran'ny fampiasana"
+                        )
+                     }
                   >
-                     Conditions de service
+                     {langueActual === 'fr'
+                        ? "Conditions d'utilisation"
+                        : "Fepetran'ny fampiasana"}
                   </Text>
                </TouchableOpacity>
                <TouchableOpacity
                   activeOpacity={0.6}
-                  onPress={() => alert('Open source licenses')}
+                  onPress={() =>
+                     alert(
+                        langueActual === 'fr'
+                           ? 'Open Source Licences'
+                           : "Lisansa ho an'ny rehetra"
+                     )
+                  }
                >
                   <Text
                      style={[
@@ -62,7 +88,9 @@ export default function About({ navigation }) {
                         { borderBottomWidth: 1 },
                      ]}
                   >
-                     Open Source Licences
+                     {langueActual === 'fr'
+                        ? 'Open Source Licences'
+                        : "Lisansa ho an'ny rehetra"}
                   </Text>
                </TouchableOpacity>
             </View>

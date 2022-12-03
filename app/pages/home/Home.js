@@ -37,7 +37,9 @@ export default function Home({ navigation }) {
             activeOpacity={0.8}
             onPress={() => {
                navigation.navigate(nameNav.detailPage, {
-                  titleScreen: `Article n°${item.Article.numero_Article}`,
+                  titleScreen: `${
+                     langueActual === 'fr' ? 'Article n° ' : 'Lahatsoratra '
+                  } ${item.Article.numero_Article}`,
                   articleToViewDetail: item,
                });
             }}

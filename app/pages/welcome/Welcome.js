@@ -4,7 +4,7 @@ import styles from './styles';
 import { Colors } from '_theme/Colors';
 import Lottie from 'lottie-react-native';
 import { Icon } from '@rneui/base';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
    getStarted,
    getAllArticles,
@@ -13,8 +13,11 @@ import {
 } from '_utils/redux/actions/action_creators';
 import { ArticleService } from '_utils';
 
-export default function Login({ navigation }) {
+export default function Welcome({ navigation }) {
    //all datas
+   const langueActual = useSelector(
+      (selector) => selector.fonctionnality.langue
+   );
    const animation = useRef(null);
    const dispatch = useDispatch();
 
@@ -53,16 +56,15 @@ export default function Login({ navigation }) {
             <Text
                style={{ fontSize: 34, fontWeight: 'bold', textAlign: 'center' }}
             >
-               Welcome ici LoIT
+               {langueActual === 'fr'
+                  ? 'Bienvenue sur loIT'
+                  : "Tongasoa eto amin'ny loIT"}
             </Text>
             <Text style={{ textAlign: 'center', marginVertical: 10 }}>
-               Esse tempor consectetur ut excepteur sunt mollit. Veniam pariatur
-               aliquip Lorem aliquip ullamco irure nostrud commodo consectetur
-               in. Adipisicing Lorem et irure laboris laborum anim sunt
-               incididunt minim consectetur cillum ea. Commodo sunt amet sint ea
-               ea velit dolor qui proident amet adipisicing aliqua dolor.
-               Officia est duis aute cillum elit laboris eu. Adipisicing
-               consectetur magna veniam exercitation.
+               C'est une application mobile où vous trouvez tous les lois ici à
+               Madagascar que vous pouvez consulter à tout moment. Avec ou sans
+               internet, vous pouvez la consulter avec toute tranquilité. Alors
+               vous êtes prêts ? On y va alors ....
             </Text>
          </View>
          <View style={styles.view_button_start}>
