@@ -15,7 +15,7 @@ export const styles = StyleSheet.create({
    view_for_filtre: {
       backgroundColor: Colors.whiteRose,
       padding: 20,
-      marginVertical: 12,
+      marginVertical: 4,
       display: 'flex',
       flexDirection: 'row',
       justifyContent: 'space-between',

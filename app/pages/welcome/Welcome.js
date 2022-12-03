@@ -1,6 +1,5 @@
 import { useRef, useEffect, useState } from 'react';
 import { Text, View, Image, TouchableOpacity } from 'react-native';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import styles from './styles';
 import { Colors } from '_theme/Colors';
 import Lottie from 'lottie-react-native';

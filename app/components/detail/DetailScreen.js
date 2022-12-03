@@ -3,9 +3,7 @@ import {
    Text,
    StyleSheet,
    StatusBar,
-   Image,
    ImageBackground,
-   Modal,
    SafeAreaView,
    ScrollView,
    TouchableOpacity,
@@ -19,7 +17,6 @@ import {
 } from 'react-native-popup-menu';
 import * as Speech from 'expo-speech';
 import React, { useState } from 'react';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { styles } from './styles';
 import { Icon } from '@rneui/themed';
 import bgImage from '_images/bg_loi.jpg';

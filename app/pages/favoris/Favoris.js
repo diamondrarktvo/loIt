@@ -1,16 +1,13 @@
 import {
    View,
    Text,
-   StyleSheet,
    FlatList,
    Image,
-   Modal,
    SafeAreaView,
    TouchableOpacity,
 } from 'react-native';
 import React, { useCallback, useEffect, useState } from 'react';
 import { nameStackNavigation as nameNav } from '_utils/constante/NameStackNavigation';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { styles } from './styles';
 import { Icon } from '@rneui/themed';
 import { useSelector, useDispatch } from 'react-redux';

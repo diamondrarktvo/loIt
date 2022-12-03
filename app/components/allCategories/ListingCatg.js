@@ -4,18 +4,14 @@ import {
    StyleSheet,
    FlatList,
    Image,
-   Modal,
    SafeAreaView,
-   Dimensions,
    TouchableOpacity,
 } from 'react-native';
-import React, { useCallback, useEffect, useState } from 'react';
+import React from 'react';
 import { nameStackNavigation as nameNav } from '_utils/constante/NameStackNavigation';
-// import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { styles } from './styles';
 import { Icon } from '@rneui/themed';
 
-import HeaderGlobal from '_components/header/HeaderGlobal';
 import { Colors } from '_theme/Colors';
 
 export default function ListingCatg({ navigation, route }) {

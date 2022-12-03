@@ -1,31 +1,49 @@
 import {
    View,
    Text,
-   StyleSheet,
    FlatList,
    Image,
-   Modal,
    SafeAreaView,
    Dimensions,
    TextInput,
    TouchableOpacity,
 } from 'react-native';
 import React, { useCallback, useEffect, useState } from 'react';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { styles } from './styles';
 import { nameStackNavigation as nameNav } from '_utils/constante/NameStackNavigation';
 import { Icon } from '@rneui/themed';
-import { useDispatch } from 'react-redux';
-import HeaderGlobal from '_components/header/HeaderGlobal';
+import { useDispatch, useSelector } from 'react-redux';
 import { Colors } from '_theme/Colors';
-import { AllArticles } from '_utils';
 import { addFavoris } from '_utils/redux/actions/action_creators';
 
 export default function Recherche({ navigation }) {
    //all data
    const dispatch = useDispatch();
+   const [valueForSearch, setValueForSearch] = useState('');
+   const allArticles = useSelector((selector) => selector.article.articles);
+   const [allArticlesFilter, setAllArticlesFilter] = useState([]);
 
-   //all logics
+   //all function
+   const findObjectContainValueSearch = (word) => {
+      if (word !== '') {
+         let resultSearch = allArticles.filter(
+            (item) =>
+               item.Titre.titre_fr.toLowerCase().includes(word.toLowerCase()) ||
+               item.Article.contenu_Article_fr
+                  .toLowerCase()
+                  .includes(word.toLowerCase())
+         );
+         setAllArticlesFilter(resultSearch);
+      } else {
+         setAllArticlesFilter([]);
+      }
+   };
+
+   const onHandleChangeValueSearch = (text) => {
+      setValueForSearch(text);
+   };
+
+   //all render
    const _renderItem = useCallback(({ item }) => {
       return (
          <TouchableOpacity
@@ -39,7 +57,7 @@ export default function Recherche({ navigation }) {
          >
             <View style={styles.view_render}>
                <Image
-                  source={item.poster_loi}
+                  source={item.photo ?? require('_images/book_loi.jpg')}
                   style={{ width: 130, height: 150, borderRadius: 16 }}
                />
                <View
@@ -52,17 +70,17 @@ export default function Recherche({ navigation }) {
                >
                   <View>
                      <Text style={{ fontWeight: 'bold', fontSize: 18 }}>
-                        Article n° {item.id}
+                        Article n° {item.Article.numero_Article}
                      </Text>
                      <Text style={{ fontSize: 12, marginBottom: 8 }}>
-                        Publié le : {item.date_publish}
+                        Publié le : {item.date_created?.substring(0, 10)}
                      </Text>
                   </View>
                   <Text
                      style={{ fontSize: 16, flex: 2, width: 210 }}
                      numberOfLines={4}
                   >
-                     {item.txt_description}{' '}
+                     {item.Article.contenu_Article_fr}{' '}
                   </Text>
                   <View
                      style={{
@@ -159,8 +177,16 @@ export default function Recherche({ navigation }) {
                   style={styles.input}
                   keyboardType="email-address"
                   placeholder="Entrer le mot de recherche ..."
+                  value={valueForSearch}
+                  onChangeText={(text) => onHandleChangeValueSearch(text)}
                />
-               <TouchableOpacity activeOpacity={0.8}>
+               <TouchableOpacity
+                  activeOpacity={0.8}
+                  onPress={() => {
+                     findObjectContainValueSearch(valueForSearch);
+                     setValueForSearch('');
+                  }}
+               >
                   <Text style={styles.boutton_search}>
                      <Icon name={'search'} color={Colors.black} size={40} />
                   </Text>
@@ -188,9 +214,14 @@ export default function Recherche({ navigation }) {
             </View>
          </View>
          <View style={styles.view_for_result}>
+            {allArticlesFilter.length > 0 && (
+               <Text style={{ textAlign: 'center' }}>
+                  {allArticlesFilter.length} résultats trouvés
+               </Text>
+            )}
             <SafeAreaView style={styles.container_safe}>
                <FlatList
-                  data={AllArticles}
+                  data={allArticlesFilter}
                   key={'_'}
                   keyExtractor={_idKeyExtractor}
                   renderItem={_renderItem}

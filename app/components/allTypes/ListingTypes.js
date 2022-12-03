@@ -5,17 +5,15 @@ import {
    FlatList,
    Image,
    SafeAreaView,
-   Dimensions,
    TouchableOpacity,
 } from 'react-native';
-import React, { useCallback, useEffect, useState } from 'react';
+import React from 'react';
 import { nameStackNavigation as nameNav } from '_utils/constante/NameStackNavigation';
 import { styles } from './styles';
 import { Icon } from '@rneui/themed';
 import { useSelector } from 'react-redux';
 
 import { Colors } from '_theme/Colors';
-import { Types } from '_utils';
 
 export default function ListingTypes({ navigation, route }) {
    const dataForFlatList = useSelector((selector) => selector.article.types);
