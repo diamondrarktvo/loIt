@@ -269,7 +269,7 @@ export default function Home({ navigation }) {
                      onPress={() => {
                         navigation.navigate(nameNav.listPage, {
                            titleScreen: 'Les derniers publiés',
-                           dataToList: ArticleLastPublish,
+                           dataToList: allArticles,
                         });
                      }}
                   />
@@ -280,7 +280,7 @@ export default function Home({ navigation }) {
                         <Carousel
                            layout="default"
                            ref={isCarousel}
-                           data={ArticleLastPublish}
+                           data={allArticles}
                            loop={true}
                            loopClonesPerSide={5} //Nombre de clones à ajouter de chaque côté des éléments d'origine. Lors d'un balayage très rapide
                            //fin des props spéficifique au section annonce

@@ -11,6 +11,12 @@ import {
    TouchableOpacity,
    Dimensions,
 } from 'react-native';
+import {
+   Menu,
+   MenuOptions,
+   MenuOption,
+   MenuTrigger,
+} from 'react-native-popup-menu';
 import * as Speech from 'expo-speech';
 import React, { useState } from 'react';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -52,15 +58,19 @@ export default function Detail({ navigation, route }) {
                   resizeMode: 'cover',
                }}
             >
+               <View
+                  style={[StyleSheet.absoluteFillObject, styles.maskImageCatg]}
+               ></View>
                <View style={styles.info_in_landing_detail}>
                   <Text
                      style={{
                         fontWeight: 'bold',
-                        fontSize: 26,
+                        fontSize: 22,
+                        width: '90%',
                         color: Colors.white,
                      }}
                   >
-                     Article n° {oneArticle.Article.numero_Article}
+                     {oneArticle.Titre.titre_fr}
                   </Text>
                   <Text
                      style={{
@@ -69,13 +79,14 @@ export default function Detail({ navigation, route }) {
                         color: Colors.white,
                      }}
                   >
-                     Publié le : {oneArticle.date_created}
+                     Publié le : {oneArticle.date_created?.substring(0, 10)}
                   </Text>
                </View>
                <View style={styles.description_section}>
                   <TouchableOpacity
                      onPress={() => {
                         dispatch(addFavoris(oneArticle));
+                        alert('Ajouté au favoris');
                      }}
                   >
                      <Text style={styles.boutton_add_favorite}>
@@ -86,6 +97,106 @@ export default function Detail({ navigation, route }) {
                         />{' '}
                      </Text>
                   </TouchableOpacity>
+
+                  <TouchableOpacity activeOpacity={0.7}>
+                     <Menu>
+                        {/* <MenuTrigger text="Select" /> */}
+                        <MenuTrigger customStyles={{}}>
+                           <Text style={styles.boutton_info_article}>
+                              <Icon
+                                 name={'info-outline'}
+                                 color={Colors.violet}
+                                 size={32}
+                              />{' '}
+                           </Text>
+                        </MenuTrigger>
+                        <MenuOptions
+                           customStyles={{
+                              optionsContainer: {
+                                 padding: 8,
+                                 width: 340,
+                                 height: 370,
+                              },
+                              optionText: {
+                                 fontSize: 22,
+                              },
+                           }}
+                        >
+                           <MenuOption>
+                              <Text style={{ fontSize: 22 }}>
+                                 Plus de détails :{' '}
+                              </Text>
+                           </MenuOption>
+                           <MenuOption>
+                              <Text style={styles.label_info_article}>
+                                 Thématique{' '}
+                              </Text>
+                              <Text style={styles.value_info_article}>
+                                 <Icon
+                                    name={'star'}
+                                    color={Colors.violet}
+                                    size={16}
+                                 />{' '}
+                                 {oneArticle.Thematique.nom_Thematique_fr}
+                              </Text>
+                           </MenuOption>
+                           <MenuOption>
+                              <Text style={styles.label_info_article}>
+                                 Type{' '}
+                              </Text>
+                              <Text style={styles.value_info_article}>
+                                 <Icon
+                                    name={'star'}
+                                    color={Colors.violet}
+                                    size={16}
+                                 />{' '}
+                                 {oneArticle.Type.nom_Type_fr}
+                              </Text>
+                           </MenuOption>
+                           <MenuOption>
+                              <Text style={styles.label_info_article}>
+                                 Section{' '}
+                              </Text>
+                              <Text style={styles.value_info_article}>
+                                 <Icon
+                                    name={'star'}
+                                    color={Colors.violet}
+                                    size={16}
+                                 />{' '}
+                                 {oneArticle.Section.nom_Section_fr ?? '...'}
+                              </Text>
+                           </MenuOption>
+                           <MenuOption>
+                              <Text style={styles.label_info_article}>
+                                 Sous section{' '}
+                              </Text>
+                              <Text style={styles.value_info_article}>
+                                 <Icon
+                                    name={'star'}
+                                    color={Colors.violet}
+                                    size={16}
+                                 />{' '}
+                                 {oneArticle.Sous_section.numero_sous_section ??
+                                    '...'}
+                              </Text>
+                           </MenuOption>
+                           <MenuOption>
+                              <Text style={styles.label_info_article}>
+                                 Intitulé{' '}
+                              </Text>
+                              <Text style={styles.value_info_article}>
+                                 <Icon
+                                    name={'star'}
+                                    color={Colors.violet}
+                                    size={16}
+                                 />{' '}
+                                 {oneArticle.Intutile.contenu_intutile ?? '...'}
+                              </Text>
+                           </MenuOption>
+                        </MenuOptions>
+                     </Menu>
+                  </TouchableOpacity>
+
                   <Text
                      style={{
                         fontSize: 22,
@@ -94,7 +205,7 @@ export default function Detail({ navigation, route }) {
                         marginBottom: 14,
                      }}
                   >
-                     Descriptions
+                     Contenu de l'article
                   </Text>
                   <ScrollView
                      style={{

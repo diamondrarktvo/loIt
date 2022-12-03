@@ -1,6 +1,7 @@
 import { Colors } from '_theme/Colors';
 import { StyleSheet, Dimensions } from 'react-native';
 
+let widthDevice = Dimensions.get('window').width;
 export const styles = StyleSheet.create({
    view_container: {
       flex: 1,
@@ -10,12 +11,16 @@ export const styles = StyleSheet.create({
       justifyContent: 'center',
    },
    info_in_landing_detail: {
-      marginTop: Dimensions.get('window').height < 700 ? 210 : 280,
+      marginTop: Dimensions.get('window').height < 700 ? 180 : 250,
       marginLeft: 28,
+   },
+   maskImageCatg: {
+      backgroundColor: 'rgba(0, 0, 0, 0.3)',
+      borderRadius: 18,
    },
    description_section: {
       paddingHorizontal: 26,
-      marginTop: 30,
+      marginTop: 28,
       borderTopLeftRadius: 50,
       borderTopRightRadius: 50,
       height: Dimensions.get('window').height < 700 ? '100%' : 480,
@@ -23,7 +28,25 @@ export const styles = StyleSheet.create({
    },
    boutton_add_favorite: {
       position: 'absolute',
-      right: 25,
+      right: 75,
+      top: -25,
+      backgroundColor: Colors.whiteRose,
+      width: 50,
+      height: 50,
+      padding: 10,
+      borderRadius: 50,
+   },
+   label_info_article: {
+      fontWeight: 'bold',
+      color: Colors.violet,
+      fontSize: 18,
+   },
+   value_info_article: {
+      fontSize: 16,
+   },
+   boutton_info_article: {
+      position: 'absolute',
+      right: 15,
       top: -25,
       backgroundColor: Colors.whiteRose,
       width: 50,
