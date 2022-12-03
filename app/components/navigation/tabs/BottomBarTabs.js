@@ -19,11 +19,12 @@ export default function BottomBarTabs() {
          screenOptions={{
             headerShown: false,
             tabBarInactiveTintColors: Colors.black,
-            tabBarActiveTintColors: Colors.blue,
+            tabBarActiveTintColors: Colors.violet,
             tabBarLabelStyle: {
                fontSize: 13,
                textTransform: 'capitalize',
                fontWeight: 'bold',
+               color: Colors.violet,
             },
             tabBarStyle: styles.tabBarStyles,
          }}
@@ -33,8 +34,12 @@ export default function BottomBarTabs() {
             component={Home}
             options={{
                tabBarLabel: langueActual === 'fr' ? 'Accueil' : 'Fandraisana',
-               tabBarIcon: ({ size, color }) => (
-                  <Icon name={'home'} color={color} size={size} />
+               tabBarIcon: ({ focused }) => (
+                  <Icon
+                     name={'home'}
+                     color={focused ? Colors.violet : Colors.grey}
+                     size={26}
+                  />
                ),
             }}
          />
@@ -43,8 +48,12 @@ export default function BottomBarTabs() {
             component={Recherche}
             options={{
                tabBarLabel: langueActual === 'fr' ? 'Recherche' : 'Hitady',
-               tabBarIcon: ({ size, color }) => (
-                  <Icon name={'search'} color={color} size={size} />
+               tabBarIcon: ({ focused }) => (
+                  <Icon
+                     name={'search'}
+                     color={focused ? Colors.violet : Colors.grey}
+                     size={26}
+                  />
                ),
             }}
          />
@@ -53,8 +62,12 @@ export default function BottomBarTabs() {
             component={Favoris}
             options={{
                tabBarLabel: langueActual === 'fr' ? 'Favoris' : 'Ankafiziko',
-               tabBarIcon: ({ size, color }) => (
-                  <Icon name={'favorite'} color={color} size={size} />
+               tabBarIcon: ({ focused }) => (
+                  <Icon
+                     name={'favorite'}
+                     color={focused ? Colors.violet : Colors.grey}
+                     size={26}
+                  />
                ),
             }}
          />
@@ -63,8 +76,12 @@ export default function BottomBarTabs() {
             component={About}
             options={{
                tabBarLabel: langueActual === 'fr' ? 'A propos' : 'Mombamomba',
-               tabBarIcon: ({ size, color }) => (
-                  <Icon name={'info'} color={color} size={size} />
+               tabBarIcon: ({ focused }) => (
+                  <Icon
+                     name={'info'}
+                     color={focused ? Colors.violet : Colors.grey}
+                     size={26}
+                  />
                ),
             }}
          />

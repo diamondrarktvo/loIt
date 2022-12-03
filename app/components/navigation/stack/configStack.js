@@ -21,10 +21,10 @@ export const configStack = {
          open: transitionConfig,
          close: transitionConfig,
       },
-      headerTintColor: Colors.white,
+      headerTintColor: Colors.blueWelcome,
       headerTitleAlign: 'center',
       headerStyle: {
-         backgroundColor: Colors.blue,
+         backgroundColor: Colors.white,
       },
       headerTitleStyle: {
          fontWeight: 'bold',
@@ -44,7 +44,7 @@ export const configStack = {
          open: transitionConfig,
          close: transitionConfig,
       },
-      headerTintColor: Colors.violet,
+      headerTintColor: Colors.blueWelcome,
       headerTitleAlign: 'center',
       headerTitleStyle: {
          fontWeight: 'bold',
@@ -66,7 +66,7 @@ export const configStack = {
       headerTintColor: Colors.white,
       headerTitleAlign: 'center',
       headerStyle: {
-         backgroundColor: Colors.blue,
+         backgroundColor: Colors.violet,
       },
       headerTitleStyle: {
          fontWeight: 'bold',
