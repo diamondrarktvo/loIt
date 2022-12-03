@@ -49,21 +49,42 @@ export default function Recherche({ navigation }) {
    const allArticles = useSelector((selector) => selector.article.articles);
    const [allArticlesFilter, setAllArticlesFilter] = useState([]);
    const allTypes = useSelector((selector) => selector.article.types);
+   const langueActual = useSelector(
+      (selector) => selector.fonctionnality.langue
+   );
 
    //all function
    const findObjectContainValueSearch = (word) => {
       if (word !== '') {
-         let resultSearch = allArticles.filter(
-            (item) =>
-               item.Titre.titre_fr.toLowerCase().includes(word.toLowerCase()) ||
-               item.Article.contenu_Article_fr
-                  .toLowerCase()
-                  .includes(word.toLowerCase()) ||
-               item.Intutile.contenu_intutile
-                  .toLowerCase()
-                  .includes(word.toLowerCase())
-         );
-         setAllArticlesFilter(resultSearch);
+         if (langueActual === 'fr') {
+            let resultSearch = allArticles.filter(
+               (item) =>
+                  item.Titre.titre_fr
+                     .toLowerCase()
+                     .includes(word.toLowerCase()) ||
+                  item.Article.contenu_Article_fr
+                     .toLowerCase()
+                     .includes(word.toLowerCase()) ||
+                  item.Intutile.contenu_intutile
+                     .toLowerCase()
+                     .includes(word.toLowerCase())
+            );
+            setAllArticlesFilter(resultSearch);
+         } else {
+            let resultSearch = allArticles.filter(
+               (item) =>
+                  item.Titre.titre_mg
+                     .toLowerCase()
+                     .includes(word.toLowerCase()) ||
+                  item.Article.contenu_Article_mg
+                     .toLowerCase()
+                     .includes(word.toLowerCase()) ||
+                  item.Intutile.contenu_intutile
+                     .toLowerCase()
+                     .includes(word.toLowerCase())
+            );
+            setAllArticlesFilter(resultSearch);
+         }
       } else {
          setAllArticlesFilter([]);
       }
@@ -74,12 +95,21 @@ export default function Recherche({ navigation }) {
    };
 
    const filterResultByType = (text) => {
-      let resultFilter = allArticlesFilter.filter(
-         (item) =>
-            item.Type.nom_Type_fr.toLowerCase() === text.toLowerCase() ??
-            valueForSearch.toLowerCase()
-      );
-      setAllArticlesFilter(resultFilter);
+      if (langueActual === 'fr') {
+         let resultFilter = allArticlesFilter.filter(
+            (item) =>
+               item.Type.nom_Type_fr.toLowerCase() === text.toLowerCase() ??
+               valueForSearch.toLowerCase()
+         );
+         setAllArticlesFilter(resultFilter);
+      } else {
+         let resultFilter = allArticlesFilter.filter(
+            (item) =>
+               item.Type.nom_Type_mg.toLowerCase() === text.toLowerCase() ??
+               valueForSearch.toLowerCase()
+         );
+         setAllArticlesFilter(resultFilter);
+      }
    };
 
    //all render
@@ -109,17 +139,21 @@ export default function Recherche({ navigation }) {
                >
                   <View>
                      <Text style={{ fontWeight: 'bold', fontSize: 18 }}>
-                        Article n° {item.Article.numero_Article}
+                        {langueActual === 'fr' ? 'Article' : 'Lahatsoratra'} n°{' '}
+                        {item.Article.numero_Article}
                      </Text>
                      <Text style={{ fontSize: 12, marginBottom: 8 }}>
-                        Publié le : {item.date_created?.substring(0, 10)}
+                        {langueActual === 'fr' ? 'Publié le ' : 'Navoaka ny '} :{' '}
+                        {item.date_created?.substring(0, 10)}
                      </Text>
                   </View>
                   <Text
                      style={{ fontSize: 16, flex: 2, width: 210 }}
                      numberOfLines={4}
                   >
-                     {item.Article.contenu_Article_fr}{' '}
+                     {langueActual === 'fr'
+                        ? item.Article.contenu_Article_fr
+                        : item.Article.contenu_Article_mg}{' '}
                   </Text>
                   <View
                      style={{
@@ -148,7 +182,9 @@ export default function Recherche({ navigation }) {
                               marginLeft: 2,
                            }}
                         >
-                           Pas encore lu
+                           {langueActual === 'fr'
+                              ? 'Pas encore lu'
+                              : 'Tsy voavaky'}
                         </Text>
                      </View>
                      <View
@@ -207,7 +243,11 @@ export default function Recherche({ navigation }) {
             >
                <TouchableOpacity activeOpacity={0.7}>
                   <Icon name={'mic'} color={Colors.violet} size={30} />
-                  <Text style={{ fontWeight: 'bold' }}>Voice search</Text>
+                  <Text style={{ fontWeight: 'bold' }}>
+                     {langueActual === 'fr'
+                        ? 'Recherche vocale'
+                        : "Hitady amin'ny alalan'ny feo"}{' '}
+                  </Text>
                </TouchableOpacity>
             </View>
 
@@ -215,7 +255,11 @@ export default function Recherche({ navigation }) {
                <TextInput
                   style={styles.input}
                   keyboardType="email-address"
-                  placeholder="Entrer le mot de recherche ..."
+                  placeholder={
+                     langueActual === 'fr'
+                        ? 'Entrer le mot de recherche ...'
+                        : 'Ampidiro ny teny hotadiavina...'
+                  }
                   value={valueForSearch}
                   onChangeText={(text) => onHandleChangeValueSearch(text)}
                />
@@ -239,7 +283,7 @@ export default function Recherche({ navigation }) {
                      fontSize: 18,
                   }}
                >
-                  Filtre
+                  {langueActual === 'fr' ? 'Filtre' : 'Sivana'}
                </Text>
                <TouchableOpacity activeOpacity={0.8}>
                   <Menu>
@@ -262,10 +306,22 @@ export default function Recherche({ navigation }) {
                      >
                         {allTypes.map((type) => (
                            <MenuOption
-                              onSelect={() => filterResultByType(type.nom)}
+                              onSelect={() =>
+                                 filterResultByType(
+                                    langueActual === 'fr'
+                                       ? type.nom
+                                       : type.nom_mg
+                                 )
+                              }
                               key={type.id}
                            >
-                              <MenuOptionCustom text={type.nom} />
+                              <MenuOptionCustom
+                                 text={
+                                    langueActual === 'fr'
+                                       ? type.nom
+                                       : type.nom_mg
+                                 }
+                              />
                            </MenuOption>
                         ))}
                      </MenuOptions>
@@ -276,7 +332,10 @@ export default function Recherche({ navigation }) {
          <View style={styles.view_for_result}>
             {allArticlesFilter.length > 0 && (
                <Text style={{ textAlign: 'center' }}>
-                  {allArticlesFilter.length} résultats trouvés
+                  {allArticlesFilter.length}{' '}
+                  {langueActual === 'fr'
+                     ? ' résultats trouvés'
+                     : ' ny valiny hita'}
                </Text>
             )}
             <SafeAreaView style={styles.container_safe}>
