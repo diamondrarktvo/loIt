@@ -138,25 +138,9 @@ export default function Home({ navigation }) {
                   <TouchableOpacity
                      onPress={() => {
                         navigation.navigate(nameNav.listType, {
-                           titleScreen: 'Faune',
-                           domaine: 'Faune',
-                        });
-                     }}
-                  >
-                     <View style={styles.one_item_categorie}>
-                        <Image
-                           style={styles.image_for_categorie}
-                           source={require('_images/book_loi.jpg')}
-                        />
-                        <Text style={{ color: Colors.secondary }}>Faune</Text>
-                     </View>
-                  </TouchableOpacity>
-
-                  <TouchableOpacity
-                     onPress={() => {
-                        navigation.navigate(nameNav.listType, {
-                           titleScreen: 'Répression ',
-                           domaine: 'Répression et principes',
+                           titleScreen:
+                              langueActual === 'fr' ? 'Faune' : 'Bibidia',
+                           domaine: langueActual === 'fr' ? 'Faune' : 'Bibidia',
                         });
                      }}
                   >
@@ -166,7 +150,8 @@ export default function Home({ navigation }) {
                            source={require('_images/book_loi.jpg')}
                         />
                         <Text style={{ color: Colors.secondary }}>
-                           Répress.
+                           {' '}
+                           {langueActual === 'fr' ? 'Faune' : 'Bibidia'}
                         </Text>
                      </View>
                   </TouchableOpacity>
@@ -174,26 +159,14 @@ export default function Home({ navigation }) {
                   <TouchableOpacity
                      onPress={() => {
                         navigation.navigate(nameNav.listType, {
-                           titleScreen: 'Flore',
-                           domaine: 'Flore',
-                        });
-                     }}
-                  >
-                     <View style={styles.one_item_categorie}>
-                        <Image
-                           style={styles.image_for_categorie}
-                           source={require('_images/book_loi.jpg')}
-                        />
-                        <Text style={{ color: Colors.secondary }}>Flore</Text>
-                     </View>
-                  </TouchableOpacity>
-
-                  <TouchableOpacity
-                     onPress={() => {
-                        navigation.navigate(nameNav.listType, {
-                           titleScreen: 'Corruption ',
+                           titleScreen:
+                              langueActual === 'fr'
+                                 ? 'Répression '
+                                 : 'Famoretana ',
                            domaine:
-                              "Corruption et Engagement d'un représentant du gouvernement",
+                              langueActual === 'fr'
+                                 ? 'Répression et principes'
+                                 : 'Famoretana sy fitsipika',
                         });
                      }}
                   >
@@ -203,7 +176,53 @@ export default function Home({ navigation }) {
                            source={require('_images/book_loi.jpg')}
                         />
                         <Text style={{ color: Colors.secondary }}>
-                           Corrupt.
+                           {langueActual === 'fr' ? 'Répress' : 'Famoreta'}
+                        </Text>
+                     </View>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity
+                     onPress={() => {
+                        navigation.navigate(nameNav.listType, {
+                           titleScreen:
+                              langueActual === 'fr' ? 'Flore' : 'Zava-maniry',
+                           domaine:
+                              langueActual === 'fr' ? 'Flore' : 'Zava-maniry',
+                        });
+                     }}
+                  >
+                     <View style={styles.one_item_categorie}>
+                        <Image
+                           style={styles.image_for_categorie}
+                           source={require('_images/book_loi.jpg')}
+                        />
+                        <Text style={{ color: Colors.secondary }}>
+                           {langueActual === 'fr' ? 'Flore' : 'Zava-man'}{' '}
+                        </Text>
+                     </View>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity
+                     onPress={() => {
+                        navigation.navigate(nameNav.listType, {
+                           titleScreen:
+                              langueActual === 'fr'
+                                 ? 'Corruption '
+                                 : 'Kolikoly ',
+                           domaine:
+                              langueActual === 'fr'
+                                 ? "Corruption et Engagement d'un représentant du gouvernement"
+                                 : "Kolikoly sy faneken'ny tompon'andraiki-panjakana",
+                        });
+                     }}
+                  >
+                     <View style={styles.one_item_categorie}>
+                        <Image
+                           style={styles.image_for_categorie}
+                           source={require('_images/book_loi.jpg')}
+                        />
+                        <Text style={{ color: Colors.secondary }}>
+                           {langueActual === 'fr' ? 'Corrupt' : 'Kolikoly'}
                         </Text>
                      </View>
                   </TouchableOpacity>
