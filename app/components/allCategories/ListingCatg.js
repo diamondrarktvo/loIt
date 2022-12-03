@@ -10,20 +10,25 @@ import {
 import React from 'react';
 import { nameStackNavigation as nameNav } from '_utils/constante/NameStackNavigation';
 import { styles } from './styles';
-import { Icon } from '@rneui/themed';
-
-import { Colors } from '_theme/Colors';
+import { useSelector } from 'react-redux';
 
 export default function ListingCatg({ navigation, route }) {
    const dataForFlatList = route.params.dataToList;
+   const langueActual = useSelector(
+      (selector) => selector.fonctionnality.langue
+   );
    const _renderItem = ({ item }) => {
       return (
          <View style={styles.view_render} key={item.id}>
             <TouchableOpacity
                onPress={() => {
                   navigation.navigate(nameNav.listType, {
-                     titleScreen: `${item.nom.substring(0, 12)}`,
-                     domaine: item.nom,
+                     titleScreen: `${
+                        langueActual === 'fr'
+                           ? item.nom.substring(0, 12)
+                           : item.nom_mg.substring(0, 12)
+                     }`,
+                     domaine: langueActual === 'fr' ? item.nom : item.nom_mg,
                   });
                }}
             >
@@ -35,7 +40,7 @@ export default function ListingCatg({ navigation, route }) {
                   style={[StyleSheet.absoluteFillObject, styles.maskImageCatg]}
                ></View>
                <Text style={[StyleSheet.absoluteFillObject, styles.nom_catg]}>
-                  {item.nom}
+                  {langueActual === 'fr' ? item.nom : item.nom_mg}
                </Text>
             </TouchableOpacity>
          </View>

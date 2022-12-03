@@ -17,14 +17,19 @@ import { Colors } from '_theme/Colors';
 
 export default function ListingTypes({ navigation, route }) {
    const dataForFlatList = useSelector((selector) => selector.article.types);
+   const langueActual = useSelector(
+      (selector) => selector.fonctionnality.langue
+   );
    const _renderItem = ({ item }) => {
       return (
          <View style={styles.view_render} key={item.id}>
             <TouchableOpacity
                onPress={() => {
                   navigation.navigate(nameNav.listPage, {
-                     titleScreen: `${item.nom}`,
-                     type: item.nom,
+                     titleScreen: `${
+                        langueActual === 'fr' ? item.nom : item.nom_mg
+                     }`,
+                     type: langueActual === 'fr' ? item.nom : item.nom_mg,
                      theme: route.params.domaine,
                   });
                }}
@@ -37,7 +42,7 @@ export default function ListingTypes({ navigation, route }) {
                   style={[StyleSheet.absoluteFillObject, styles.maskImageCatg]}
                ></View>
                <Text style={[StyleSheet.absoluteFillObject, styles.nom_catg]}>
-                  {item.nom}
+                  {langueActual === 'fr' ? item.nom : item.nom_mg}
                </Text>
             </TouchableOpacity>
          </View>

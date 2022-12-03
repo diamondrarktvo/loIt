@@ -20,16 +20,25 @@ import { addFavoris } from '_utils/redux/actions/action_creators';
 export default function Listing({ navigation, route }) {
    //all data
    const dispatch = useDispatch();
-   let allArticle = useSelector((selector) => selector.article.articles);
-   const dataPerThemeAndType = allArticle.filter(
-      (article) =>
-         article.Thematique.nom_Thematique_fr === route.params.theme &&
-         article.Type.nom_Type_fr === route.params.type
-   );
-   const dataForFlatList = route.params.dataToList ?? dataPerThemeAndType;
    const langueActual = useSelector(
       (selector) => selector.fonctionnality.langue
    );
+   let allArticle = useSelector((selector) => selector.article.articles);
+   let dataPerThemeAndType = [];
+   if (langueActual === 'fr') {
+      dataPerThemeAndType = allArticle.filter(
+         (article) =>
+            article.Thematique.nom_Thematique_fr === route.params.theme &&
+            article.Type.nom_Type_fr === route.params.type
+      );
+   } else {
+      dataPerThemeAndType = allArticle.filter(
+         (article) =>
+            article.Thematique.nom_Thematique_mg === route.params.theme &&
+            article.Type.nom_Type_mg === route.params.type
+      );
+   }
+   const dataForFlatList = route.params.dataToList ?? dataPerThemeAndType;
 
    //all logics
    const _renderItem = useCallback(({ item }) => {
