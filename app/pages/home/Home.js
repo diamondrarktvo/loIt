@@ -13,9 +13,8 @@ import Carousel from 'react-native-snap-carousel';
 
 import HeaderGlobal from '_components/header/HeaderGlobal';
 import { nameStackNavigation as nameNav } from '_utils/constante/NameStackNavigation';
-import { ArticleLastPublish, Thematique } from '_utils';
 import { Colors } from '_theme/Colors';
-import { useState, useContext, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 export default function Home({ navigation }) {
@@ -53,7 +52,7 @@ export default function Home({ navigation }) {
                   }}
                   numberOfLines={1}
                >
-                  {item.Article?.contenu_Article_fr}
+                  {item.Titre?.titre_fr}
                </Text>
                <Text style={{ fontSize: 12 }}>
                   Publié le :{item.date_created?.substring(0, 10)}{' '}

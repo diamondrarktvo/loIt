@@ -32,7 +32,7 @@ export const styles = StyleSheet.create({
       opacity: 0.9,
       color: Colors.white,
       marginHorizontal: 2,
-      fontSize: 20,
+      fontSize: widthDevice < 370 ? 16 : 20,
       flexWrap: 'wrap',
       textAlign: 'center',
       top: 29,
