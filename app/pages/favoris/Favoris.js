@@ -144,8 +144,69 @@ export default function Favoris({ navigation, route }) {
    return (
       <View style={styles.view_container}>
          <SafeAreaView>
-            <FlatList
-               ListHeaderComponent={
+            {dataForFlatList.length > 0 ? (
+               <FlatList
+                  ListHeaderComponent={
+                     <View>
+                        <View style={styles.head_content}>
+                           <HeaderGlobal navigation={navigation} />
+                        </View>
+
+                        <View style={styles.landing_screen}>
+                           <Text style={styles.text_landing_screen}>
+                              {langueActual === 'fr'
+                                 ? 'Vos favoris'
+                                 : 'Ireo ankafizinao'}
+                           </Text>
+                           <View style={styles.content_in_landing_screen}>
+                              <Image
+                                 style={styles.icon_in_content_landing}
+                                 source={require('_images/book_loi.jpg')}
+                              />
+                              <View
+                                 style={{
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    alignItems: 'flex-start',
+                                 }}
+                              >
+                                 <Text
+                                    style={{ fontSize: 16, fontWeight: 'bold' }}
+                                 >
+                                    {langueActual === 'fr'
+                                       ? 'Favoris'
+                                       : 'Ankafizina'}
+                                 </Text>
+                                 <Text>
+                                    {langueActual === 'fr'
+                                       ? 'Regardez-les encore'
+                                       : 'Jereo ihany izy ireo'}{' '}
+                                 </Text>
+                              </View>
+                              <Icon
+                                 name={'autorenew'}
+                                 color={Colors.white}
+                                 size={38}
+                              />
+                           </View>
+                        </View>
+                     </View>
+                  }
+                  data={dataForFlatList}
+                  key={'_'}
+                  keyExtractor={_idKeyExtractor}
+                  renderItem={_renderItem}
+                  removeClippedSubviews={true}
+                  getItemLayout={(data, index) => ({
+                     length: data.length,
+                     offset: data.length * index,
+                     index,
+                  })}
+                  initialNumToRender={5}
+                  maxToRenderPerBatch={3}
+               />
+            ) : (
+               <View>
                   <View>
                      <View style={styles.head_content}>
                         <HeaderGlobal navigation={navigation} />
@@ -190,20 +251,22 @@ export default function Favoris({ navigation, route }) {
                         </View>
                      </View>
                   </View>
-               }
-               data={dataForFlatList}
-               key={'_'}
-               keyExtractor={_idKeyExtractor}
-               renderItem={_renderItem}
-               removeClippedSubviews={true}
-               getItemLayout={(data, index) => ({
-                  length: data.length,
-                  offset: data.length * index,
-                  index,
-               })}
-               initialNumToRender={5}
-               maxToRenderPerBatch={3}
-            />
+                  <View
+                     style={{
+                        display: 'flex',
+                        borderWidth: 1,
+                        padding: 18,
+                        marginVertical: 28,
+                     }}
+                  >
+                     <Text style={{ textAlign: 'center', fontSize: 32 }}>
+                        {langueActual === 'fr'
+                           ? 'Pas de favoris'
+                           : 'Tsy misy ankafizina'}
+                     </Text>
+                  </View>
+               </View>
+            )}
          </SafeAreaView>
       </View>
    );

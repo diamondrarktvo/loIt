@@ -168,20 +168,37 @@ export default function Listing({ navigation, route }) {
    return (
       <View style={styles.view_container}>
          <SafeAreaView style={styles.container_safe}>
-            <FlatList
-               data={dataForFlatList}
-               key={'_'}
-               keyExtractor={_idKeyExtractor}
-               renderItem={_renderItem}
-               removeClippedSubviews={true}
-               getItemLayout={(data, index) => ({
-                  length: data.length,
-                  offset: data.length * index,
-                  index,
-               })}
-               initialNumToRender={5}
-               maxToRenderPerBatch={3}
-            />
+            {dataForFlatList.length > 0 ? (
+               <FlatList
+                  data={dataForFlatList}
+                  key={'_'}
+                  keyExtractor={_idKeyExtractor}
+                  renderItem={_renderItem}
+                  removeClippedSubviews={true}
+                  getItemLayout={(data, index) => ({
+                     length: data.length,
+                     offset: data.length * index,
+                     index,
+                  })}
+                  initialNumToRender={5}
+                  maxToRenderPerBatch={3}
+               />
+            ) : (
+               <View
+                  style={{
+                     display: 'flex',
+                     borderWidth: 1,
+                     padding: 18,
+                     marginVertical: 28,
+                  }}
+               >
+                  <Text style={{ textAlign: 'center', fontSize: 32 }}>
+                     {langueActual === 'fr'
+                        ? 'Pas de données'
+                        : 'Tsy misy tahirin-kevitra'}
+                  </Text>
+               </View>
+            )}
          </SafeAreaView>
       </View>
    );
