@@ -2,6 +2,7 @@ import { StyleSheet } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Colors } from '_theme/Colors';
 import { Icon } from '@rneui/themed';
+import { useSelector } from 'react-redux';
 
 //import screen bottom tab
 import { Home, About, Recherche, Favoris } from '_pages';
@@ -9,6 +10,9 @@ import { Home, About, Recherche, Favoris } from '_pages';
 const Tab = createBottomTabNavigator();
 
 export default function BottomBarTabs() {
+   const langueActual = useSelector(
+      (selector) => selector.fonctionnality.langue
+   );
    return (
       <Tab.Navigator
          initialRouteName="Home"
@@ -28,7 +32,7 @@ export default function BottomBarTabs() {
             name="Home"
             component={Home}
             options={{
-               tabBarLabel: 'Home',
+               tabBarLabel: langueActual === 'fr' ? 'Accueil' : 'Fandraisana',
                tabBarIcon: ({ size, color }) => (
                   <Icon name={'home'} color={color} size={size} />
                ),
@@ -38,7 +42,7 @@ export default function BottomBarTabs() {
             name="Recherche"
             component={Recherche}
             options={{
-               tabBarLabel: 'Recherche',
+               tabBarLabel: langueActual === 'fr' ? 'Recherche' : 'Hitady',
                tabBarIcon: ({ size, color }) => (
                   <Icon name={'search'} color={color} size={size} />
                ),
@@ -48,7 +52,7 @@ export default function BottomBarTabs() {
             name="Favoris"
             component={Favoris}
             options={{
-               tabBarLabel: 'Favoris',
+               tabBarLabel: langueActual === 'fr' ? 'Favoris' : 'Ankafiziko',
                tabBarIcon: ({ size, color }) => (
                   <Icon name={'favorite'} color={color} size={size} />
                ),
@@ -58,7 +62,7 @@ export default function BottomBarTabs() {
             name="A propos"
             component={About}
             options={{
-               tabBarLabel: 'A propos',
+               tabBarLabel: langueActual === 'fr' ? 'A propos' : 'Mombamomba',
                tabBarIcon: ({ size, color }) => (
                   <Icon name={'info'} color={color} size={size} />
                ),
