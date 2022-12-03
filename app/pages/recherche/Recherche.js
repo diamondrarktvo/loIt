@@ -8,6 +8,12 @@ import {
    TextInput,
    TouchableOpacity,
 } from 'react-native';
+import {
+   Menu,
+   MenuOptions,
+   MenuOption,
+   MenuTrigger,
+} from 'react-native-popup-menu';
 import React, { useCallback, useEffect, useState } from 'react';
 import { styles } from './styles';
 import { nameStackNavigation as nameNav } from '_utils/constante/NameStackNavigation';
@@ -16,12 +22,33 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Colors } from '_theme/Colors';
 import { addFavoris } from '_utils/redux/actions/action_creators';
 
+//component custom
+const MenuOptionCustom = ({ text }) => {
+   return (
+      <View
+         style={{
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'flex-start',
+            paddingVertical: 4,
+         }}
+      >
+         <Icon name={'category'} color={Colors.black} size={18} />
+         <Text style={{ fontSize: 22, marginLeft: 8 }}>
+            {text?.substring(0, 16)}
+         </Text>
+      </View>
+   );
+};
+
 export default function Recherche({ navigation }) {
    //all data
    const dispatch = useDispatch();
    const [valueForSearch, setValueForSearch] = useState('');
    const allArticles = useSelector((selector) => selector.article.articles);
    const [allArticlesFilter, setAllArticlesFilter] = useState([]);
+   const allTypes = useSelector((selector) => selector.article.types);
 
    //all function
    const findObjectContainValueSearch = (word) => {
@@ -41,6 +68,15 @@ export default function Recherche({ navigation }) {
 
    const onHandleChangeValueSearch = (text) => {
       setValueForSearch(text);
+   };
+
+   const filterResultByType = (text) => {
+      let resultFilter = allArticlesFilter.filter(
+         (item) =>
+            item.Type.nom_Type_fr.toLowerCase() === text.toLowerCase() ??
+            valueForSearch.toLowerCase()
+      );
+      setAllArticlesFilter(resultFilter);
    };
 
    //all render
@@ -184,7 +220,6 @@ export default function Recherche({ navigation }) {
                   activeOpacity={0.8}
                   onPress={() => {
                      findObjectContainValueSearch(valueForSearch);
-                     setValueForSearch('');
                   }}
                >
                   <Text style={styles.boutton_search}>
@@ -203,13 +238,35 @@ export default function Recherche({ navigation }) {
                >
                   Filtre
                </Text>
-               <TouchableOpacity
-                  activeOpacity={0.8}
-                  onPress={() => {
-                     alert('filtrer');
-                  }}
-               >
-                  <Icon name={'filter-list'} color={Colors.violet} size={34} />
+               <TouchableOpacity activeOpacity={0.8}>
+                  <Menu>
+                     <MenuTrigger customStyles={{}}>
+                        <Icon
+                           name={'filter-list'}
+                           color={Colors.violet}
+                           size={34}
+                        />
+                     </MenuTrigger>
+                     <MenuOptions
+                        customStyles={{
+                           optionsContainer: {
+                              padding: 8,
+                           },
+                           optionText: {
+                              fontSize: 22,
+                           },
+                        }}
+                     >
+                        {allTypes.map((type) => (
+                           <MenuOption
+                              onSelect={() => filterResultByType(type.nom)}
+                              key={type.id}
+                           >
+                              <MenuOptionCustom text={type.nom} />
+                           </MenuOption>
+                        ))}
+                     </MenuOptions>
+                  </Menu>
                </TouchableOpacity>
             </View>
          </View>
