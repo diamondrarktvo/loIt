@@ -20,11 +20,14 @@ import React, { useState } from 'react';
 import { styles } from './styles';
 import { Icon } from '@rneui/themed';
 import bgImage from '_images/bg_loi.jpg';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Colors } from '_theme/Colors';
 import { addFavoris } from '_utils/redux/actions/action_creators';
 
 export default function Detail({ navigation, route }) {
+   const langueActual = useSelector(
+      (selector) => selector.fonctionnality.langue
+   );
    const dispatch = useDispatch();
    const [isSpeakPlay, setIsSpeakPlay] = useState(false);
    const oneArticle = route.params.articleToViewDetail;
@@ -67,7 +70,9 @@ export default function Detail({ navigation, route }) {
                         color: Colors.white,
                      }}
                   >
-                     {oneArticle.Titre.titre_fr}
+                     {langueActual === 'fr'
+                        ? oneArticle.Titre.titre_fr
+                        : oneArticle.Titre.titre_mg}
                   </Text>
                   <Text
                      style={{
@@ -76,14 +81,19 @@ export default function Detail({ navigation, route }) {
                         color: Colors.white,
                      }}
                   >
-                     Publié le : {oneArticle.date_created?.substring(0, 10)}
+                     {langueActual === 'fr' ? 'Publié le ' : 'Nivoaka ny '} :{' '}
+                     {oneArticle.date_created?.substring(0, 10)}
                   </Text>
                </View>
                <View style={styles.description_section}>
                   <TouchableOpacity
                      onPress={() => {
                         dispatch(addFavoris(oneArticle));
-                        alert('Ajouté au favoris');
+                        alert(
+                           langueActual === 'fr'
+                              ? 'Ajouté au favoris'
+                              : "Niampy ao amin'ny ankafizina"
+                        );
                      }}
                   >
                      <Text style={styles.boutton_add_favorite}>
@@ -121,12 +131,17 @@ export default function Detail({ navigation, route }) {
                         >
                            <MenuOption>
                               <Text style={{ fontSize: 22 }}>
-                                 Plus de détails :{' '}
+                                 {langueActual === 'fr'
+                                    ? 'Plus de détails :'
+                                    : 'Fanampiny misimisy :'}{' '}
+                                 :{' '}
                               </Text>
                            </MenuOption>
                            <MenuOption>
                               <Text style={styles.label_info_article}>
-                                 Thématique{' '}
+                                 {langueActual === 'fr'
+                                    ? 'Thématiques '
+                                    : 'Lohahevitra'}{' '}
                               </Text>
                               <Text style={styles.value_info_article}>
                                  <Icon
@@ -134,12 +149,16 @@ export default function Detail({ navigation, route }) {
                                     color={Colors.violet}
                                     size={16}
                                  />{' '}
-                                 {oneArticle.Thematique.nom_Thematique_fr}
+                                 {langueActual === 'fr'
+                                    ? oneArticle.Thematique.nom_Thematique_fr
+                                    : oneArticle.Thematique.nom_Thematique_mg}
                               </Text>
                            </MenuOption>
                            <MenuOption>
                               <Text style={styles.label_info_article}>
-                                 Type{' '}
+                                 {langueActual === 'fr'
+                                    ? 'Types '
+                                    : 'Karazana '}{' '}
                               </Text>
                               <Text style={styles.value_info_article}>
                                  <Icon
@@ -147,12 +166,16 @@ export default function Detail({ navigation, route }) {
                                     color={Colors.violet}
                                     size={16}
                                  />{' '}
-                                 {oneArticle.Type.nom_Type_fr}
+                                 {langueActual === 'fr'
+                                    ? oneArticle.Type.nom_Type_fr
+                                    : oneArticle.Type.nom_Type_mg}
                               </Text>
                            </MenuOption>
                            <MenuOption>
                               <Text style={styles.label_info_article}>
-                                 Section{' '}
+                                 {langueActual === 'fr'
+                                    ? 'Section '
+                                    : 'Faritra'}{' '}
                               </Text>
                               <Text style={styles.value_info_article}>
                                  <Icon
@@ -160,12 +183,17 @@ export default function Detail({ navigation, route }) {
                                     color={Colors.violet}
                                     size={16}
                                  />{' '}
-                                 {oneArticle.Section.nom_Section_fr ?? '...'}
+                                 {langueActual === 'fr'
+                                    ? oneArticle.Section.nom_Section_fr
+                                    : oneArticle.Section.nom_Section_mg ??
+                                      '...'}
                               </Text>
                            </MenuOption>
                            <MenuOption>
                               <Text style={styles.label_info_article}>
-                                 Sous section{' '}
+                                 {langueActual === 'fr'
+                                    ? 'Sous section '
+                                    : 'Fizarana anatiny '}{' '}
                               </Text>
                               <Text style={styles.value_info_article}>
                                  <Icon
@@ -179,7 +207,9 @@ export default function Detail({ navigation, route }) {
                            </MenuOption>
                            <MenuOption>
                               <Text style={styles.label_info_article}>
-                                 Intitulé{' '}
+                                 {langueActual === 'fr'
+                                    ? 'Intitulé '
+                                    : 'Mitondra ny lohateny hoe'}{' '}
                               </Text>
                               <Text style={styles.value_info_article}>
                                  <Icon
@@ -202,7 +232,9 @@ export default function Detail({ navigation, route }) {
                         marginBottom: 14,
                      }}
                   >
-                     Contenu de l'article
+                     {langueActual === 'fr'
+                        ? "Contenu de l'article "
+                        : "Votoatin'ny lahatsoratra"}
                   </Text>
                   <ScrollView
                      style={{
@@ -216,7 +248,9 @@ export default function Detail({ navigation, route }) {
                            textAlign: 'left',
                         }}
                      >
-                        {oneArticle.Article.contenu_Article_fr}
+                        {langueActual === 'fr'
+                           ? oneArticle.Article.contenu_Article_fr
+                           : oneArticle.Article.contenu_Article_mg}
                      </Text>
                   </ScrollView>
                   <View style={styles.all_button_in_detail_screen}>
@@ -237,12 +271,21 @@ export default function Detail({ navigation, route }) {
                      <TouchableOpacity
                         onPress={() => {
                            setIsSpeakPlay(!isSpeakPlay);
-                           playPauseSpeak(
-                              oneArticle.Article.contenu_Article_fr.substring(
-                                 0,
-                                 4000
-                              )
-                           );
+                           if (langueActual === 'fr') {
+                              playPauseSpeak(
+                                 oneArticle.Article.contenu_Article_fr.substring(
+                                    0,
+                                    4000
+                                 )
+                              );
+                           } else {
+                              playPauseSpeak(
+                                 oneArticle.Article.contenu_Article_mg.substring(
+                                    0,
+                                    4000
+                                 )
+                              );
+                           }
                         }}
                      >
                         <Text style={[styles.button_in_detail]}>
