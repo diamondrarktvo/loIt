@@ -27,6 +27,9 @@ export default function Listing({ navigation, route }) {
          article.Type.nom_Type_fr === route.params.type
    );
    const dataForFlatList = route.params.dataToList ?? dataPerThemeAndType;
+   const langueActual = useSelector(
+      (selector) => selector.fonctionnality.langue
+   );
 
    //all logics
    const _renderItem = useCallback(({ item }) => {
@@ -35,7 +38,9 @@ export default function Listing({ navigation, route }) {
             activeOpacity={0.9}
             onPress={() => {
                navigation.navigate(nameNav.detailPage, {
-                  titleScreen: `Article n° ${item.Article.numero_Article}`,
+                  titleScreen: `${
+                     langueActual === 'fr' ? 'Article n°' : 'Lahatsoratra '
+                  } ${item.Article.numero_Article}`,
                   articleToViewDetail: item,
                });
             }}
@@ -55,17 +60,21 @@ export default function Listing({ navigation, route }) {
                >
                   <View>
                      <Text style={{ fontWeight: 'bold', fontSize: 18 }}>
-                        Article n° {item.Article.numero_Article}
+                        {langueActual === 'fr' ? 'Article n°' : 'Lahatsoratra '}{' '}
+                        {item.Article.numero_Article}
                      </Text>
                      <Text style={{ fontSize: 12, marginBottom: 8 }}>
-                        Publié le : {item.date_created?.substring(0, 10)}
+                        {langueActual === 'fr' ? 'Publié le ' : 'Nivoaka ny '}:{' '}
+                        {item.date_created?.substring(0, 10)}
                      </Text>
                   </View>
                   <Text
                      style={{ fontSize: 16, flex: 2, width: 210 }}
                      numberOfLines={4}
                   >
-                     {item.Article.contenu_Article_fr}{' '}
+                     {langueActual === 'fr'
+                        ? item.Article.contenu_Article_fr
+                        : item.Article.contenu_Article_mg}{' '}
                   </Text>
                   <View
                      style={{
@@ -94,7 +103,9 @@ export default function Listing({ navigation, route }) {
                               marginLeft: 2,
                            }}
                         >
-                           Pas encore lu
+                           {langueActual === 'fr'
+                              ? 'Pas encore lu'
+                              : 'Tsy voavaky'}
                         </Text>
                      </View>
                      <View
@@ -121,7 +132,11 @@ export default function Listing({ navigation, route }) {
                            activeOpacity={0.8}
                            onPress={() => {
                               dispatch(addFavoris(item));
-                              alert('Ajouté au favoris.');
+                              alert(
+                                 langueActual === 'fr'
+                                    ? 'Ajouté au favoris.'
+                                    : "Nampiana tao amin'ny ankafizina"
+                              );
                            }}
                         >
                            <Icon
