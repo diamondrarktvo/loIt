@@ -4,10 +4,16 @@ import {
    GET_STARTED,
    GET_ALL_THEMATIQUES,
    GET_ALL_TYPES,
+   CHANGE_LANGUAGE,
 } from './action_names';
 
 export const getStarted = () => ({
    type: GET_STARTED,
+});
+
+export const changeLanguage = (langue) => ({
+   type: CHANGE_LANGUAGE,
+   payload: langue,
 });
 
 export const getAllArticles = (articles) => ({

@@ -1,8 +1,9 @@
 import { produce } from 'immer';
-import { getStarted } from '../actions/action_creators';
+import { getStarted, changeLanguage } from '../actions/action_creators';
 
 const initialState = {
    started: false,
+   langue: 'fr',
 };
 
 export const functionnalityReducer = (state = initialState, action) => {
@@ -10,6 +11,10 @@ export const functionnalityReducer = (state = initialState, action) => {
       case getStarted().type:
          return produce(state, (draft) => {
             draft.started = !draft.started;
+         });
+      case changeLanguage().type:
+         return produce(state, (draft) => {
+            draft.langue = action.payload;
          });
       default:
          return state;

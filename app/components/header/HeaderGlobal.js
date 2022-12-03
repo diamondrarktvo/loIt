@@ -7,6 +7,9 @@ import {
    MenuOption,
    MenuTrigger,
 } from 'react-native-popup-menu';
+import { useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
+import { changeLanguage } from '_utils/redux/actions/action_creators';
 
 const MenuOptionCustom = ({ text, icone }) => {
    return (
@@ -25,12 +28,23 @@ const MenuOptionCustom = ({ text, icone }) => {
 };
 
 export default function HeaderGlobal({ navigation }) {
+   //all data
+   const dispatch = useDispatch();
+
+   //all logics
+   const { t, i18n } = useTranslation();
+   const onHandleChangeLanguage = (langue) => {
+      i18n.changeLanguage(langue);
+      dispatch(changeLanguage(langue));
+   };
+
    return (
       <View style={styles.container}>
-         <Text style={styles.titre_salutation}>Bienvenue sur loIT !</Text>
+         <Text style={styles.titre_salutation}>
+            {t('bienvenue_header_text')} !
+         </Text>
          <TouchableOpacity activeOpacity={0.7}>
             <Menu>
-               {/* <MenuTrigger text="Select" /> */}
                <MenuTrigger customStyles={{}}>
                   <Icon name={'widgets'} color={Colors.violet} size={34} />
                </MenuTrigger>
@@ -44,15 +58,12 @@ export default function HeaderGlobal({ navigation }) {
                      },
                   }}
                >
-                  <MenuOption onSelect={() => alert(`Save`)} text="Save" />
-                  <MenuOption onSelect={() => alert(`Français`)}>
+                  <MenuOption onSelect={() => onHandleChangeLanguage('fr')}>
                      <MenuOptionCustom text="Français" icone="flag" />
                   </MenuOption>
-                  <MenuOption
-                     onSelect={() => alert(`Not called`)}
-                     disabled={true}
-                     text="Disabled"
-                  />
+                  <MenuOption onSelect={() => onHandleChangeLanguage('mg')}>
+                     <MenuOptionCustom text="Malagasy" icone="flag" />
+                  </MenuOption>
                </MenuOptions>
             </Menu>
          </TouchableOpacity>

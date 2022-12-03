@@ -6,6 +6,7 @@ import {
    SafeAreaView,
    TouchableOpacity,
 } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { styles } from './styles';
 import { Icon } from '@rneui/themed';
@@ -14,17 +15,20 @@ import Carousel from 'react-native-snap-carousel';
 import HeaderGlobal from '_components/header/HeaderGlobal';
 import { nameStackNavigation as nameNav } from '_utils/constante/NameStackNavigation';
 import { Colors } from '_theme/Colors';
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 export default function Home({ navigation }) {
    //all states
    const isCarousel = React.useRef(null);
    const allArticles = useSelector((selector) => selector.article.articles);
+   const langueActual = useSelector(
+      (selector) => selector.fonctionnality.langue
+   );
    const allThematiques = useSelector(
       (selector) => selector.article.thematiques
    );
    //all efects
+   const { t } = useTranslation();
 
    //all components
    const _renderItem = ({ item }) => {
@@ -52,10 +56,12 @@ export default function Home({ navigation }) {
                   }}
                   numberOfLines={1}
                >
-                  {item.Titre?.titre_fr}
+                  {langueActual === 'fr'
+                     ? item.Titre?.titre_fr
+                     : item.Titre?.titre_mg}
                </Text>
                <Text style={{ fontSize: 12 }}>
-                  Publié le :{item.date_created?.substring(0, 10)}{' '}
+                  {t('mot_publie_home')}:{item.date_created?.substring(0, 10)}{' '}
                </Text>
             </View>
          </TouchableOpacity>
@@ -71,7 +77,7 @@ export default function Home({ navigation }) {
 
             <View style={styles.landing_screen}>
                <Text style={styles.text_landing_screen}>
-                  La loi nous libère
+                  {t('txt_landing_home')}
                </Text>
                <View style={styles.content_in_landing_screen}>
                   <Image
@@ -86,9 +92,9 @@ export default function Home({ navigation }) {
                      }}
                   >
                      <Text style={{ fontSize: 16, fontWeight: 'bold' }}>
-                        Adventure
+                        {t('allez_y')}
                      </Text>
-                     <Text>Continue de lire</Text>
+                     <Text>{t('continue_de_lire')} </Text>
                   </View>
                   <Icon name={'autorenew'} color={Colors.white} size={38} />
                </View>
@@ -105,7 +111,7 @@ export default function Home({ navigation }) {
                   }}
                >
                   <Text style={{ fontSize: 22, fontWeight: 'bold' }}>
-                     Thématiques
+                     {t('thematique')}
                   </Text>
                   <Icon
                      name={'arrow-forward'}
@@ -113,7 +119,10 @@ export default function Home({ navigation }) {
                      size={30}
                      onPress={() => {
                         navigation.navigate(nameNav.listCategorie, {
-                           titleScreen: 'Tous les thèmes',
+                           titleScreen:
+                              langueActual === 'fr'
+                                 ? 'Tous les thèmes'
+                                 : 'Ireo lohahevitra',
                            dataToList: allThematiques,
                         });
                      }}
@@ -212,7 +221,7 @@ export default function Home({ navigation }) {
                   }}
                >
                   <Text style={{ fontSize: 20, fontWeight: 'bold' }}>
-                     Les articles
+                     {t('les_articles')}
                   </Text>
                   <Icon
                      name={'arrow-forward'}
@@ -220,7 +229,10 @@ export default function Home({ navigation }) {
                      size={30}
                      onPress={() => {
                         navigation.navigate(nameNav.listPage, {
-                           titleScreen: 'Tous les articles',
+                           titleScreen:
+                              langueActual === 'fr'
+                                 ? 'Tous les articles'
+                                 : 'Ireo lahatsoratra',
                            dataToList: allArticles,
                         });
                      }}
@@ -259,7 +271,7 @@ export default function Home({ navigation }) {
                   }}
                >
                   <Text style={{ fontSize: 20, fontWeight: 'bold' }}>
-                     Publié récemment
+                     {t('publie_recemment')}
                   </Text>
                   <Icon
                      name={'arrow-forward'}
@@ -267,7 +279,10 @@ export default function Home({ navigation }) {
                      size={30}
                      onPress={() => {
                         navigation.navigate(nameNav.listPage, {
-                           titleScreen: 'Les derniers publiés',
+                           titleScreen:
+                              langueActual === 'fr'
+                                 ? 'Les derniers publiés'
+                                 : 'Ireo nivoaka farany',
                            dataToList: allArticles,
                         });
                      }}

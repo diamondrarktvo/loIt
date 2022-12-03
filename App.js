@@ -7,6 +7,7 @@ import { Colors } from '_theme/Colors';
 import Navigation from '_components/navigation/navigation';
 import { Provider } from 'react-redux';
 import { store } from '_utils/redux/store';
+import './i18nextConf';
 
 export default function App() {
    return (
