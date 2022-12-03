@@ -58,6 +58,9 @@ export default function Recherche({ navigation }) {
                item.Titre.titre_fr.toLowerCase().includes(word.toLowerCase()) ||
                item.Article.contenu_Article_fr
                   .toLowerCase()
+                  .includes(word.toLowerCase()) ||
+               item.Intutile.contenu_intutile
+                  .toLowerCase()
                   .includes(word.toLowerCase())
          );
          setAllArticlesFilter(resultSearch);
