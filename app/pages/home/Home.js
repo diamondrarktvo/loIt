@@ -117,7 +117,7 @@ export default function Home({ navigation }) {
                   </Text>
                   <Icon
                      name={'arrow-forward'}
-                     color={Colors.black}
+                     color={Colors.violet}
                      size={30}
                      onPress={() => {
                         navigation.navigate(nameNav.listCategorie, {
@@ -151,7 +151,7 @@ export default function Home({ navigation }) {
                            style={styles.image_for_categorie}
                            source={require('_images/book_loi.jpg')}
                         />
-                        <Text style={{ color: Colors.secondary }}>
+                        <Text style={{ color: Colors.blueWelcome }}>
                            {' '}
                            {langueActual === 'fr' ? 'Faune' : 'Bibidia'}
                         </Text>
@@ -177,7 +177,7 @@ export default function Home({ navigation }) {
                            style={styles.image_for_categorie}
                            source={require('_images/book_loi.jpg')}
                         />
-                        <Text style={{ color: Colors.secondary }}>
+                        <Text style={{ color: Colors.blueWelcome }}>
                            {langueActual === 'fr' ? 'Répress' : 'Famoreta'}
                         </Text>
                      </View>
@@ -198,7 +198,7 @@ export default function Home({ navigation }) {
                            style={styles.image_for_categorie}
                            source={require('_images/book_loi.jpg')}
                         />
-                        <Text style={{ color: Colors.secondary }}>
+                        <Text style={{ color: Colors.blueWelcome }}>
                            {langueActual === 'fr' ? 'Flore' : 'Zava-man'}{' '}
                         </Text>
                      </View>
@@ -223,7 +223,7 @@ export default function Home({ navigation }) {
                            style={styles.image_for_categorie}
                            source={require('_images/book_loi.jpg')}
                         />
-                        <Text style={{ color: Colors.secondary }}>
+                        <Text style={{ color: Colors.blueWelcome }}>
                            {langueActual === 'fr' ? 'Corrupt' : 'Kolikoly'}
                         </Text>
                      </View>
@@ -246,7 +246,7 @@ export default function Home({ navigation }) {
                   </Text>
                   <Icon
                      name={'arrow-forward'}
-                     color={Colors.black}
+                     color={Colors.violet}
                      size={30}
                      onPress={() => {
                         navigation.navigate(nameNav.listPage, {
@@ -296,7 +296,7 @@ export default function Home({ navigation }) {
                   </Text>
                   <Icon
                      name={'arrow-forward'}
-                     color={Colors.black}
+                     color={Colors.violet}
                      size={30}
                      onPress={() => {
                         navigation.navigate(nameNav.listPage, {
