@@ -18,6 +18,9 @@ import { addFavoris } from '_utils/redux/actions/action_creators';
 export default function Favoris({ navigation, route }) {
    const dataForFlatList = useSelector((selector) => selector.article.favoris);
    const dispatch = useDispatch();
+   const langueActual = useSelector(
+      (selector) => selector.fonctionnality.langue
+   );
    //all logics
    const _renderItem = useCallback(({ item }) => {
       return (
@@ -25,7 +28,11 @@ export default function Favoris({ navigation, route }) {
             activeOpacity={0.9}
             onPress={() => {
                navigation.navigate(nameNav.detailPage, {
-                  titleScreen: `Article n° ${item.Article.numer_Article}`,
+                  titleScreen: `${
+                     langueActual === 'fr'
+                        ? 'Article n° '
+                        : 'Lahatsoratra faha '
+                  } ${item.Article.numero_Article}`,
                   articleToViewDetail: item,
                });
             }}
@@ -45,17 +52,21 @@ export default function Favoris({ navigation, route }) {
                >
                   <View>
                      <Text style={{ fontWeight: 'bold', fontSize: 18 }}>
-                        Article n° {item.id}
+                        {langueActual === 'fr' ? 'Article n°' : 'Lahatsoratra '}{' '}
+                        {item.id}
                      </Text>
                      <Text style={{ fontSize: 12, marginBottom: 8 }}>
-                        Publié le : {item.date_created?.substring(0, 10)}
+                        {langueActual === 'fr' ? 'Publié le ' : 'Nivoaka ny '} :{' '}
+                        {item.date_created?.substring(0, 10)}
                      </Text>
                   </View>
                   <Text
                      style={{ fontSize: 16, flex: 2, width: 210 }}
                      numberOfLines={4}
                   >
-                     {item.Article.contenu_Article_fr}{' '}
+                     {langueActual === 'fr'
+                        ? item.Article.contenu_Article_fr
+                        : item.Article.contenu_Article_mg}{' '}
                   </Text>
                   <View
                      style={{
@@ -84,7 +95,7 @@ export default function Favoris({ navigation, route }) {
                               marginLeft: 2,
                            }}
                         >
-                           Déjà lu
+                           {langueActual === 'fr' ? 'Déjà lu' : 'Efa voavaky'}
                         </Text>
                      </View>
                      <View
@@ -142,7 +153,9 @@ export default function Favoris({ navigation, route }) {
 
                      <View style={styles.landing_screen}>
                         <Text style={styles.text_landing_screen}>
-                           Vos Favoris
+                           {langueActual === 'fr'
+                              ? 'Vos favoris'
+                              : 'Ireo ankafizinao'}
                         </Text>
                         <View style={styles.content_in_landing_screen}>
                            <Image
@@ -159,9 +172,15 @@ export default function Favoris({ navigation, route }) {
                               <Text
                                  style={{ fontSize: 16, fontWeight: 'bold' }}
                               >
-                                 Favoris
+                                 {langueActual === 'fr'
+                                    ? 'Favoris'
+                                    : 'Ankafizina'}
                               </Text>
-                              <Text>Regardez-les encore</Text>
+                              <Text>
+                                 {langueActual === 'fr'
+                                    ? 'Regardez-les encore'
+                                    : 'Jereo ihany izy ireo'}{' '}
+                              </Text>
                            </View>
                            <Icon
                               name={'autorenew'}
